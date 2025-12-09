@@ -1,11 +1,13 @@
 
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
-  output: "export",  // Required for static export to GitHub Pages
-  basePath: "/willesden-rec", // Required for GitHub Project Pages
+  output: "export",
+  basePath: isProd ? "/willesden-rec" : "",
   images: {
-    unoptimized: true, // Required because Next.js Image Optimization doesn't work with 'export'
+    unoptimized: true,
   },
 };
 
