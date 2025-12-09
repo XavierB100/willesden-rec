@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Palette */
+  --vintage-charcoal: #2C3E50;
+  --vintage-cream: #F5F5F0;
+  --vintage-gold: #C5A059;
+  --forest-green: #2F4F4F;
+  --vintage-moss: #0d2818;
+
+  /* Defaults */
+  --background: var(--vintage-cream);
+  --foreground: var(--vintage-charcoal);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-vintage-charcoal: var(--vintage-charcoal);
+  --color-vintage-cream: var(--vintage-cream);
+  --color-vintage-gold: var(--vintage-gold);
+  --color-forest-green: var(--forest-green);
+  --color-vintage-moss: var(--vintage-moss);
+
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
