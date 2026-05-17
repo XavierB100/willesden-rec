@@ -1,15 +1,24 @@
+import type { Metadata } from "next";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Button } from "@/components/ui/Button";
-import { products } from "@/lib/data";
+import { getProducts } from "@/lib/data";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Willesden Reclamation | Architectural Salvage in London",
+  description:
+    "Browse reclaimed Victorian fireplaces, antique doors, garden pieces, and architectural salvage from Willesden Reclamation in London NW10.",
+};
+
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const latestProducts = await getProducts({ includeSold: false, limit: 4 });
+
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
       <section className="relative bg-vintage-moss text-vintage-cream py-24 md:py-32 overflow-hidden">
-        {/* Abstract Background Pattern - can be replaced with an image later */}
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-vintage-gold via-vintage-moss to-vintage-moss" />
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-8 space-y-8 text-center md:text-left">
@@ -18,12 +27,12 @@ export default function Home() {
               Established 2018
             </span>
             <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight">
-              Reclaiming London's <br />
+              Reclaiming London&apos;s <br />
               <span className="text-vintage-gold italic">Architectural Soul</span>
             </h1>
             <p className="text-lg md:text-xl text-vintage-cream/80 max-w-2xl font-sans leading-relaxed">
-              We specialise in original Victorian fireplaces, antique doors, and unique salvaged items.
-              Restoring the character of the past for the homes of today.
+              Original Victorian fireplaces, antique doors, and unique salvaged
+              items from our Willesden yard.
             </p>
             <div className="pt-4 flex flex-col md:flex-row gap-4">
               <Link href="/stock">
@@ -41,7 +50,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Products */}
       <section className="py-20 bg-vintage-cream">
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-12">
           <div className="flex items-end justify-between border-b border-vintage-charcoal/10 pb-6">
@@ -58,11 +66,17 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {latestProducts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {latestProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="py-16 text-center text-vintage-charcoal/60 font-serif text-xl">
+              New stock is being prepared. Please contact the yard for current availability.
+            </div>
+          )}
 
           <div className="md:hidden flex justify-center pt-8">
             <Link href="/stock">
@@ -73,8 +87,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Categories / Info Section could go here */}
     </div>
   );
 }

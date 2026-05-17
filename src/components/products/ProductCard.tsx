@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Product } from '@/lib/data';
+import { PRODUCT_IMAGE_PLACEHOLDER, formatPrice, type Product } from '@/lib/data';
 import { Button } from '@/components/ui/Button';
 
 interface ProductCardProps {
@@ -8,6 +8,11 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+    const imageSrc =
+        product.imageUrls[0] ||
+        PRODUCT_IMAGE_PLACEHOLDER;
+    const href = `/products/${product.slug || product.id}`;
+
     return (
         <div className="group flex flex-col bg-white border border-vintage-charcoal/5 hover:border-vintage-gold/50 transition-all duration-300 hover:shadow-lg rounded-sm overflow-hidden">
             {/* Image Container */}
@@ -18,9 +23,10 @@ export function ProductCard({ product }: ProductCardProps) {
                     </div>
                 )}
                 <Image
-                    src={product.image}
-                    alt={product.title}
+                    src={imageSrc}
+                    alt={`Photo of ${product.title}`}
                     fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
             </div>
@@ -36,10 +42,10 @@ export function ProductCard({ product }: ProductCardProps) {
 
                 <div className="mt-auto pt-4 flex items-center justify-between border-t border-vintage-charcoal/5">
                     <span className="font-serif text-xl font-bold text-vintage-charcoal">
-                        £{product.price}
+                        {formatPrice(product.price)}
                     </span>
-                    <Link href={`/products/${product.id}`}>
-                        <Button size="sm" variant="outline" className="opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Link href={href}>
+                        <Button size="sm" variant="outline" className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                             View Details
                         </Button>
                     </Link>

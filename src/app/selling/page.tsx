@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
-import Link from "next/link";
-import { Phone, ArrowRight } from "lucide-react";
+import { buildWhatsAppUrl, getSiteSettings } from "@/lib/data";
+import { MessageCircle, ArrowRight } from "lucide-react";
 
-export default function SellingPage() {
+export const metadata: Metadata = {
+    title: "Sell Architectural Salvage | Willesden Reclamation",
+    description:
+        "Sell reclaimed fireplaces, doors, radiators, stained glass, garden ornaments, and architectural stone to Willesden Reclamation.",
+};
+
+export const dynamic = "force-dynamic";
+
+export default async function SellingPage() {
+    const settings = await getSiteSettings();
+    const whatsappUrl = buildWhatsAppUrl(
+        settings.whatsappNumber,
+        "Hi, I have some reclaimed items to sell. I can send photos, dimensions, my location, and a rough price expectation.",
+    );
+
     return (
         <div className="min-h-screen bg-vintage-cream py-16 px-4 md:px-8">
             <div className="max-w-4xl mx-auto space-y-12">
@@ -12,7 +27,7 @@ export default function SellingPage() {
                     </h1>
                     <p className="text-lg text-vintage-charcoal/70 font-sans max-w-2xl mx-auto">
                         We are always looking to buy high-quality reclaimed items.
-                        If you have architectural salvage you'd like to sell, we'd love to see it.
+                        If you have architectural salvage you would like to sell, we would love to see it.
                     </p>
                 </div>
 
@@ -20,37 +35,38 @@ export default function SellingPage() {
                     <div className="space-y-4">
                         <h2 className="text-2xl font-serif font-bold text-vintage-moss">What We Buy</h2>
                         <ul className="grid md:grid-cols-2 gap-4 font-sans text-vintage-charcoal/80">
-                            <li className="flex items-start"><ArrowRight className="w-5 h-5 mr-2 text-vintage-gold flex-shrink-0" /> Victorian Fireplaces</li>
-                            <li className="flex items-start"><ArrowRight className="w-5 h-5 mr-2 text-vintage-gold flex-shrink-0" /> Cast Iron Radiators</li>
-                            <li className="flex items-start"><ArrowRight className="w-5 h-5 mr-2 text-vintage-gold flex-shrink-0" /> Old Pine Doors</li>
-                            <li className="flex items-start"><ArrowRight className="w-5 h-5 mr-2 text-vintage-gold flex-shrink-0" /> Stained Glass</li>
-                            <li className="flex items-start"><ArrowRight className="w-5 h-5 mr-2 text-vintage-gold flex-shrink-0" /> Garden Ornaments</li>
-                            <li className="flex items-start"><ArrowRight className="w-5 h-5 mr-2 text-vintage-gold flex-shrink-0" /> Architectural Stone</li>
+                            {[
+                                "Victorian Fireplaces",
+                                "Cast Iron Radiators",
+                                "Old Pine Doors",
+                                "Stained Glass",
+                                "Garden Ornaments",
+                                "Architectural Stone",
+                            ].map((item) => (
+                                <li key={item} className="flex items-start">
+                                    <ArrowRight className="w-5 h-5 mr-2 text-vintage-gold flex-shrink-0" />
+                                    {item}
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     <div className="space-y-6 border-t border-vintage-charcoal/10 pt-8">
                         <h2 className="text-2xl font-serif font-bold text-vintage-moss">How to Sell</h2>
                         <p className="font-sans text-vintage-charcoal/80">
-                            The easiest way to get a quote is to send us photos of your items via WhatsApp.
-                            Please include:
+                            The easiest way to get a quote is to send photos via WhatsApp.
+                            Please include clear photos, dimensions, your location, and a rough price expectation.
                         </p>
-                        <ul className="list-disc list-inside space-y-2 font-sans text-vintage-charcoal/80 pl-4">
-                            <li>Clear photos of the item</li>
-                            <li>Any dimensions or measurements</li>
-                            <li>Your location (for collection)</li>
-                            <li>Rough price expectation</li>
-                        </ul>
 
                         <div className="pt-4">
                             <a
-                                href="https://wa.me/447907020909?text=Hi,%20I%20have%20some%20items%20to%20sell."
+                                href={whatsappUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-block"
+                                className="inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
                             >
-                                <Button size="lg" className="bg-forest-green hover:bg-vintage-moss text-white">
-                                    <Phone className="w-5 h-5 mr-2" />
+                                <Button size="lg" className="bg-[#25D366] hover:bg-[#128C7E] text-white">
+                                    <MessageCircle className="w-5 h-5 mr-2" />
                                     Send Photos via WhatsApp
                                 </Button>
                             </a>

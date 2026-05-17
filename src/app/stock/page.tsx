@@ -1,18 +1,31 @@
-"use client";
-
-import { useState } from "react";
-import { products } from "@/lib/data";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { getProducts, PRODUCT_CATEGORIES, type ProductCategory } from "@/lib/data";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Button } from "@/components/ui/Button";
 
-const categories = ["All", "Fireplaces", "Doors", "Garden", "Furniture", "Lighting"];
+export const metadata: Metadata = {
+    title: "Current Stock | Willesden Reclamation",
+    description:
+        "Browse current reclaimed fireplaces, doors, garden pieces, furniture, lighting, and architectural salvage from Willesden Reclamation.",
+};
 
-export default function StockPage() {
-    const [filter, setFilter] = useState("All");
+interface StockPageProps {
+    searchParams?: Promise<{ category?: string }>;
+}
 
-    const filteredProducts = products.filter((product) => {
-        if (filter === "All") return true;
-        return product.category === filter;
+function isProductCategory(value?: string): value is ProductCategory {
+    return PRODUCT_CATEGORIES.includes(value as ProductCategory);
+}
+
+export default async function StockPage({ searchParams }: StockPageProps) {
+    const params = await searchParams;
+    const selectedCategory = isProductCategory(params?.category)
+        ? params?.category
+        : undefined;
+    const filteredProducts = await getProducts({
+        category: selectedCategory,
+        includeSold: true,
     });
 
     return (
@@ -27,30 +40,36 @@ export default function StockPage() {
                     </p>
                 </div>
 
-                {/* Filters */}
                 <div className="flex flex-wrap gap-2 md:gap-4 border-b border-vintage-charcoal/10 pb-8">
-                    {categories.map((category) => (
+                    <Link href="/stock">
                         <Button
-                            key={category}
-                            variant={filter === category ? "primary" : "outline"}
-                            onClick={() => setFilter(category)}
+                            variant={!selectedCategory ? "primary" : "outline"}
                             className="min-w-[4rem]"
                         >
-                            {category}
+                            All
                         </Button>
+                    </Link>
+                    {PRODUCT_CATEGORIES.map((category) => (
+                        <Link key={category} href={`/stock?category=${encodeURIComponent(category)}`}>
+                            <Button
+                                variant={selectedCategory === category ? "primary" : "outline"}
+                                className="min-w-[4rem]"
+                            >
+                                {category}
+                            </Button>
+                        </Link>
                     ))}
                 </div>
 
-                {/* Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {filteredProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
-
-                {filteredProducts.length === 0 && (
-                    <div className="text-center py-20 opacity-50 font-serif text-xl">
-                        No items found in this category.
+                {filteredProducts.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {filteredProducts.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-20 opacity-60 font-serif text-xl">
+                        No items found in this category. Please contact us for unlisted stock.
                     </div>
                 )}
             </div>

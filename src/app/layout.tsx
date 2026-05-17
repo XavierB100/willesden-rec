@@ -15,8 +15,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Willesden Reclamation | Vintage & Architectural Salvage",
-  description: "Specialists in reclaimed Victorian fireplaces, doors, and architectural antiques.",
+  metadataBase: new URL("https://willesdenreclamation.co.uk"),
+  title: {
+    default: "Willesden Reclamation | Vintage & Architectural Salvage",
+    template: "%s | Willesden Reclamation",
+  },
+  description: "Specialists in reclaimed Victorian fireplaces, doors, and architectural antiques in London NW10.",
+  openGraph: {
+    siteName: "Willesden Reclamation",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${playfair.variable} ${inter.variable} antialiased bg-vintage-cream text-vintage-charcoal flex flex-col min-h-screen`}
       >
