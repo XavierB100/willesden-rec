@@ -20,7 +20,7 @@ After Supabase is configured and `npm run dev` is running:
 
 1. Open `http://localhost:3000/admin`.
 2. Log in with the Supabase Auth user whose email matches `ADMIN_EMAIL`.
-3. Add a test product with title, category, description, price, dimensions, status, and at least one image.
+3. Add a test product with title, category, description, price, dimensions, status, and at least one image. Categories are Fireplaces, Doors, Windows, Lighting, Garden, Furniture, and Other.
 4. Check `http://localhost:3000/stock` and the product detail page.
 5. Test stock sorting by latest, price low-to-high, and price high-to-low.
 6. Edit the product, mark it sold, and confirm the public stock and detail pages update.
@@ -38,7 +38,7 @@ Prices support pounds and pence. Leave the price blank for POA, or enter values 
 4. Set `ADMIN_EMAIL` to that owner email.
 5. Copy the project URL, anon key, and service role key into `.env.local` and Vercel environment variables.
 
-If the project was created before decimal prices were added, also run `supabase/migrations/002_decimal_prices.sql` in the Supabase SQL editor. Fresh projects only need the latest full schema in `001_initial_schema.sql`.
+If the project was created before decimal prices or the Windows/Other categories were added, also run `supabase/migrations/002_decimal_prices.sql` and `supabase/migrations/003_add_windows_other_categories.sql` in the Supabase SQL editor as needed. Fresh projects only need the latest full schema in `001_initial_schema.sql`.
 
 Required variables:
 

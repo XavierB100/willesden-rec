@@ -5,9 +5,9 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Reclaimed Doors & Windows | Willesden Reclamation",
+    title: "Reclaimed Doors | Willesden Reclamation",
     description:
-        "Browse reclaimed period pine doors, stained glass, and window frames from Willesden Reclamation.",
+        "Browse reclaimed period pine doors and stained glass from Willesden Reclamation.",
 };
 
 export const dynamic = "force-dynamic";
@@ -24,11 +24,11 @@ export default async function DoorsPage() {
                         <span className="sr-only">Back to current stock</span>
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-vintage-charcoal">
-                        Doors & Windows
+                        Doors
                     </h1>
                 </div>
                 <p className="text-vintage-charcoal/60 max-w-2xl font-sans">
-                    Reclaimed period pine doors, stained glass, and window frames.
+                    Reclaimed period pine doors and stained glass.
                 </p>
 
                 {filteredProducts.length > 0 ? (

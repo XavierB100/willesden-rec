@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 export const metadata: Metadata = {
     title: "Current Stock | Willesden Reclamation",
     description:
-        "Browse current reclaimed fireplaces, doors, garden pieces, furniture, lighting, and architectural salvage from Willesden Reclamation.",
+        "Browse current reclaimed fireplaces, doors, windows, garden pieces, furniture, lighting, and other architectural salvage from Willesden Reclamation.",
 };
 
 interface StockPageProps {

@@ -32,7 +32,7 @@ const localBusinessJsonLd = {
   },
   areaServed: "London",
   description:
-    "Vintage and architectural salvage specialist selling reclaimed Victorian fireplaces, doors, garden pieces, furniture, and lighting.",
+    "Vintage and architectural salvage specialist selling reclaimed Victorian fireplaces, doors, windows, garden pieces, furniture, lighting, and other yard stock.",
 };
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     default: "Willesden Reclamation | Vintage & Architectural Salvage",
     template: "%s | Willesden Reclamation",
   },
-  description: "Specialists in reclaimed Victorian fireplaces, doors, and architectural antiques in London NW10.",
+  description: "Specialists in reclaimed Victorian fireplaces, doors, windows, and architectural antiques in London NW10.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

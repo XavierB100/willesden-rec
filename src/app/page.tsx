@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Willesden Reclamation | Architectural Salvage in London",
   description:
-    "Browse reclaimed Victorian fireplaces, antique doors, garden pieces, and architectural salvage from Willesden Reclamation in London NW10.",
+    "Browse reclaimed Victorian fireplaces, antique doors, windows, garden pieces, and architectural salvage from Willesden Reclamation in London NW10.",
 };
 
 export const dynamic = "force-dynamic";
@@ -31,8 +31,8 @@ export default async function Home() {
               <span className="text-vintage-gold italic">Architectural Soul</span>
             </h1>
             <p className="text-lg md:text-xl text-vintage-cream/80 max-w-2xl font-sans leading-relaxed">
-              Original Victorian fireplaces, antique doors, and unique salvaged
-              items from our Willesden yard.
+              Original Victorian fireplaces, antique doors, reclaimed windows,
+              and unique salvaged items from our Willesden yard.
             </p>
             <div className="pt-4 flex flex-col md:flex-row gap-4">
               <Link href="/stock">

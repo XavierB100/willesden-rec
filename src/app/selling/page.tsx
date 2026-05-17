@@ -6,7 +6,7 @@ import { MessageCircle, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
     title: "Sell Architectural Salvage | Willesden Reclamation",
     description:
-        "Sell reclaimed fireplaces, doors, radiators, stained glass, garden ornaments, and architectural stone to Willesden Reclamation.",
+        "Sell reclaimed fireplaces, doors, windows, radiators, stained glass, garden ornaments, and architectural stone to Willesden Reclamation.",
 };
 
 export const dynamic = "force-dynamic";
@@ -39,6 +39,7 @@ export default async function SellingPage() {
                                 "Victorian Fireplaces",
                                 "Cast Iron Radiators",
                                 "Old Pine Doors",
+                                "Reclaimed Windows",
                                 "Stained Glass",
                                 "Garden Ornaments",
                                 "Architectural Stone",

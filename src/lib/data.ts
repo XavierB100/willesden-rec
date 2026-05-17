@@ -3,9 +3,11 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 export const PRODUCT_CATEGORIES = [
     "Fireplaces",
     "Doors",
+    "Windows",
     "Lighting",
     "Garden",
     "Furniture",
+    "Other",
 ] as const;
 
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];

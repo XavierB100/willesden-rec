@@ -5,7 +5,7 @@ create table if not exists public.products (
   legacy_id text,
   title text not null,
   slug text not null unique,
-  category text not null check (category in ('Fireplaces', 'Doors', 'Lighting', 'Garden', 'Furniture')),
+  category text not null check (category in ('Fireplaces', 'Doors', 'Windows', 'Lighting', 'Garden', 'Furniture', 'Other')),
   description text not null default '',
   price numeric(10, 2),
   dimensions text,
