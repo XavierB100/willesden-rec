@@ -16,6 +16,25 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Willesden Reclamation",
+  url: "https://willesdenreclamation.co.uk",
+  image: "https://willesdenreclamation.co.uk/wr-icon-512.png",
+  telephone: "+447907020909",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "71 High Road",
+    addressLocality: "London",
+    postalCode: "NW10 2SU",
+    addressCountry: "GB",
+  },
+  areaServed: "London",
+  description:
+    "Vintage and architectural salvage specialist selling reclaimed Victorian fireplaces, doors, garden pieces, furniture, and lighting.",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://willesdenreclamation.co.uk"),
   title: {
@@ -46,6 +65,10 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased bg-vintage-cream text-vintage-charcoal flex flex-col min-h-screen`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
         <Navbar />
         <main className="flex-grow">
           {children}

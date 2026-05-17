@@ -22,8 +22,9 @@ After Supabase is configured and `npm run dev` is running:
 2. Log in with the Supabase Auth user whose email matches `ADMIN_EMAIL`.
 3. Add a test product with title, category, description, price, dimensions, status, and at least one image.
 4. Check `http://localhost:3000/stock` and the product detail page.
-5. Edit the product, mark it sold, and confirm the public stock and detail pages update.
-6. Delete the test product when finished if it was only for QA.
+5. Test stock sorting by latest, price low-to-high, and price high-to-low.
+6. Edit the product, mark it sold, and confirm the public stock and detail pages update.
+7. Delete the test product when finished if it was only for QA.
 
 The seeded products intentionally use local placeholder images until real stock photos are uploaded.
 
@@ -65,7 +66,7 @@ After deployment, point `willesdenreclamation.co.uk` at the Vercel project from 
 
 When the real domain is connected, update `NEXT_PUBLIC_SITE_URL` in Vercel from the preview domain to `https://willesdenreclamation.co.uk` and redeploy so WhatsApp enquiry messages include the final public URL.
 
-The app ships with `robots.txt`, `sitemap.xml`, a web app manifest, and WR favicon/app icons for search engines and mobile home-screen previews. After the domain switch, verify the site in Google Search Console and submit `https://willesdenreclamation.co.uk/sitemap.xml` to encourage Google to recrawl the new pages.
+The app ships with `robots.txt`, `sitemap.xml`, a web app manifest, LocalBusiness structured data, a noindex admin route, and WR favicon/app icons for search engines and mobile home-screen previews. After the domain switch, verify the site in Google Search Console and submit `https://willesdenreclamation.co.uk/sitemap.xml` to encourage Google to recrawl the new pages.
 
 ## Scripts
 

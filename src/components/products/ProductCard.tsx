@@ -10,9 +10,10 @@ import { Button } from '@/components/ui/Button';
 
 interface ProductCardProps {
     product: Product;
+    priority?: boolean;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, priority = false }: ProductCardProps) {
     const images = product.imageUrls.length ? product.imageUrls : [PRODUCT_IMAGE_PLACEHOLDER];
     const [activeIndex, setActiveIndex] = useState(0);
     const imageSrc = images[activeIndex] || images[0];
@@ -45,6 +46,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     fill
                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                     className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+                    priority={priority}
                 />
                 {hasMultipleImages && (
                     <>
