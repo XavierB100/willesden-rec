@@ -65,6 +65,8 @@ After deployment, point `willesdenreclamation.co.uk` at the Vercel project from 
 
 When the real domain is connected, update `NEXT_PUBLIC_SITE_URL` in Vercel from the preview domain to `https://willesdenreclamation.co.uk` and redeploy so WhatsApp enquiry messages include the final public URL.
 
+The app ships with `robots.txt`, `sitemap.xml`, a web app manifest, and WR favicon/app icons for search engines and mobile home-screen previews. After the domain switch, verify the site in Google Search Console and submit `https://willesdenreclamation.co.uk/sitemap.xml` to encourage Google to recrawl the new pages.
+
 ## Scripts
 
 ```bash

@@ -23,6 +23,13 @@ export const metadata: Metadata = {
     template: "%s | Willesden Reclamation",
   },
   description: "Specialists in reclaimed Victorian fireplaces, doors, and architectural antiques in London NW10.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/wr-icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "512x512", type: "image/png" }],
+  },
   openGraph: {
     siteName: "Willesden Reclamation",
     type: "website",
