@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
@@ -56,6 +56,7 @@ function productToForm(product: Product): ProductFormState {
 
 export default function AdminPage() {
     const supabase = useMemo(() => createBrowserSupabaseClient(), []);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const [session, setSession] = useState<Session | null>(null);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -164,11 +165,18 @@ export default function AdminPage() {
         setError("");
         setMessage("");
 
+        const parsedPrice = productForm.price.trim() ? Number(productForm.price) : null;
+        if (parsedPrice !== null && !Number.isFinite(parsedPrice)) {
+            setIsLoading(false);
+            setError("Enter a valid price, or leave it blank for POA.");
+            return;
+        }
+
         const payload = {
             title: productForm.title,
             slug: productForm.slug,
             description: productForm.description,
-            price: productForm.price ? Number(productForm.price) : null,
+            price: parsedPrice,
             category: productForm.category,
             dimensions: productForm.dimensions || null,
             status: productForm.status,
@@ -232,12 +240,16 @@ export default function AdminPage() {
                 });
                 const json = await response.json();
                 if (!response.ok) throw new Error(json.error || "Image upload failed.");
+                if (typeof json.url !== "string" || !json.url) {
+                    throw new Error("Upload completed but did not return a valid image URL.");
+                }
                 uploadedUrls.push(json.url);
             }
             updateProductForm({ imageUrls: [...productForm.imageUrls, ...uploadedUrls] });
         } catch (uploadError) {
             setError(uploadError instanceof Error ? uploadError.message : "Image upload failed.");
         } finally {
+            if (fileInputRef.current) fileInputRef.current.value = "";
             setIsUploading(false);
         }
     }
@@ -401,7 +413,8 @@ export default function AdminPage() {
                                     <input
                                         type="number"
                                         min="0"
-                                        step="1"
+                                        step="0.01"
+                                        inputMode="decimal"
                                         value={productForm.price}
                                         onChange={(event) => updateProductForm({ price: event.target.value })}
                                         className="w-full p-3 border border-vintage-charcoal/20 rounded-sm focus:outline-none focus:border-forest-green"
@@ -459,6 +472,7 @@ export default function AdminPage() {
                                     <Upload className="w-8 h-8 mb-2" />
                                     <span>{isUploading ? "Uploading..." : "Upload product photos"}</span>
                                     <input
+                                        ref={fileInputRef}
                                         type="file"
                                         accept="image/*"
                                         multiple

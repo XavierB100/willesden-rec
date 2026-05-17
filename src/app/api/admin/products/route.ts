@@ -18,11 +18,14 @@ function parseProductInput(body: Partial<ProductInput>) {
     if (!PRODUCT_CATEGORIES.includes(category as ProductInput["category"])) throw new Error("Choose a valid category.");
     if (!["available", "sold"].includes(status)) throw new Error("Choose a valid status.");
 
+    const price = body.price === null || body.price === undefined ? null : Number(body.price);
+    if (price !== null && !Number.isFinite(price)) throw new Error("Enter a valid price, or leave it blank for POA.");
+
     return {
         title,
         slug: body.slug,
         description,
-        price: body.price === null || body.price === undefined ? null : Number(body.price),
+        price,
         category,
         imageUrls: Array.isArray(body.imageUrls) ? body.imageUrls : [],
         status: status as ProductStatus,

@@ -205,10 +205,12 @@ export const products = DEFAULT_PRODUCTS;
 
 export function formatPrice(price: number | null) {
     if (price === null) return "POA";
+    const hasPence = !Number.isInteger(price);
     return new Intl.NumberFormat("en-GB", {
         style: "currency",
         currency: "GBP",
-        maximumFractionDigits: 0,
+        minimumFractionDigits: hasPence ? 2 : 0,
+        maximumFractionDigits: 2,
     }).format(price);
 }
 

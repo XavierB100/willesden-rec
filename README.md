@@ -1,6 +1,6 @@
 # Willesden Reclamation
 
-Production-ready Next.js site for Willesden Reclamation, backed by Supabase inventory, admin login, product image uploads, WhatsApp enquiries, and Vercel hosting.
+Production-ready Next.js site for Willesden Reclamation, backed by Supabase inventory, admin login, product image uploads, WhatsApp enquiries, Vercel Analytics, Vercel Speed Insights, and Vercel hosting.
 
 ## Local Development
 
@@ -27,6 +27,8 @@ After Supabase is configured and `npm run dev` is running:
 
 The seeded products intentionally use local placeholder images until real stock photos are uploaded.
 
+Prices support pounds and pence. Leave the price blank for POA, or enter values such as `23`, `23.50`, or `23.96`.
+
 ## Supabase Setup
 
 1. Create a Supabase project.
@@ -34,6 +36,8 @@ The seeded products intentionally use local placeholder images until real stock 
 3. Create an auth user for the owner in Supabase Auth.
 4. Set `ADMIN_EMAIL` to that owner email.
 5. Copy the project URL, anon key, and service role key into `.env.local` and Vercel environment variables.
+
+If the project was created before decimal prices were added, also run `supabase/migrations/002_decimal_prices.sql` in the Supabase SQL editor. Fresh projects only need the latest full schema in `001_initial_schema.sql`.
 
 Required variables:
 
@@ -55,7 +59,11 @@ If the service role key is ever committed, screenshotted publicly, or pasted int
 
 Deploy to Vercel as a standard Next.js app. This project intentionally does not use `output: "export"` because the admin dashboard, uploads, and server-side Supabase writes require server routes.
 
+Vercel Analytics and Speed Insights are enabled through `@vercel/analytics` and `@vercel/speed-insights`. After deploying, visit a few pages on the live site and Vercel's Analytics and Speed Insights tabs should begin showing data.
+
 After deployment, point `willesdenreclamation.co.uk` at the Vercel project from the domain registrar/DNS provider.
+
+When the real domain is connected, update `NEXT_PUBLIC_SITE_URL` in Vercel from the preview domain to `https://willesdenreclamation.co.uk` and redeploy so WhatsApp enquiry messages include the final public URL.
 
 ## Scripts
 

@@ -7,7 +7,7 @@ create table if not exists public.products (
   slug text not null unique,
   category text not null check (category in ('Fireplaces', 'Doors', 'Lighting', 'Garden', 'Furniture')),
   description text not null default '',
-  price integer,
+  price numeric(10, 2),
   dimensions text,
   status text not null default 'available' check (status in ('available', 'sold')),
   image_urls text[] not null default '{}',
