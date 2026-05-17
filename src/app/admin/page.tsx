@@ -471,7 +471,7 @@ export default function AdminPage() {
                                     {productForm.imageUrls.map((url, index) => (
                                         <div key={url} className="border border-vintage-charcoal/10 rounded-sm p-3 space-y-2">
                                             <div className="relative h-28 w-full overflow-hidden rounded-sm">
-                                                <Image src={url} alt={`Product upload ${index + 1}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+                                                <Image src={url} alt={`Product upload ${index + 1}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-contain bg-vintage-cream/40" />
                                             </div>
                                             <div className="flex gap-2">
                                                 <Button
@@ -538,7 +538,7 @@ export default function AdminPage() {
                                                 alt={product.imageUrls[0] ? product.title : `Placeholder for ${product.title}`}
                                                 width={64}
                                                 height={64}
-                                                className="h-full w-full object-cover"
+                                                className="h-full w-full object-contain bg-vintage-cream/40"
                                             />
                                         </div>
                                         <div className="min-w-0">

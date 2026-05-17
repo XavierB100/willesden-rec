@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
+import { ProductGallery } from "@/components/products/ProductGallery";
 import {
     buildWhatsAppUrl,
     formatPrice,
     getProductByIdentifier,
     getSiteSettings,
-    PRODUCT_IMAGE_PLACEHOLDER,
 } from "@/lib/data";
 import { ArrowLeft, MessageCircle, Ruler, Tag } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -52,12 +51,11 @@ export default async function ProductPage({ params }: PageProps) {
         notFound();
     }
 
-    const imageSrc =
-        product.imageUrls[0] ||
-        PRODUCT_IMAGE_PLACEHOLDER;
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://willesdenreclamation.co.uk").replace(/\/$/, "");
+    const productUrl = `${siteUrl}/products/${product.slug || product.id}`;
     const whatsappUrl = buildWhatsAppUrl(
         settings.whatsappNumber,
-        `Hi, I'm interested in the ${product.title} (ID: ${product.legacyId || product.id}). Is this still available?`,
+        `Hi, I'm interested in ${product.title}. Here's the listing: ${productUrl}. Is it still available?`,
     );
 
     return (
@@ -69,21 +67,11 @@ export default async function ProductPage({ params }: PageProps) {
                 </Link>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
-                    <div className="relative aspect-[3/4] bg-white rounded-sm overflow-hidden border border-vintage-charcoal/5 shadow-sm">
-                        {product.status === "sold" && (
-                            <div className="absolute top-6 right-6 z-10 bg-vintage-charcoal text-vintage-cream text-sm font-bold px-4 py-2 uppercase tracking-widest shadow-md">
-                                Sold Out
-                            </div>
-                        )}
-                        <Image
-                            src={imageSrc}
-                            alt={`Photo of ${product.title}`}
-                            fill
-                            sizes="(min-width: 768px) 50vw, 100vw"
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
+                    <ProductGallery
+                        title={product.title}
+                        imageUrls={product.imageUrls}
+                        sold={product.status === "sold"}
+                    />
 
                     <div className="flex flex-col space-y-8 py-4">
                         <div className="space-y-4">

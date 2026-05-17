@@ -42,9 +42,12 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 ADMIN_EMAIL=
+NEXT_PUBLIC_SITE_URL=
 ```
 
 The `product-images` storage bucket is public-read. Product writes, settings updates, and uploads go through protected Next.js route handlers that verify the logged-in Supabase user email matches `ADMIN_EMAIL`.
+
+`NEXT_PUBLIC_SITE_URL` is used in prefilled WhatsApp enquiry messages. Use `https://willesdenreclamation.co.uk` for production, or omit it locally to use the same production link in test messages.
 
 If the service role key is ever committed, screenshotted publicly, or pasted into a public place, rotate it in Supabase before deploying.
 
