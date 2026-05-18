@@ -30,6 +30,8 @@ The seeded products intentionally use local placeholder images until real stock 
 
 Prices support pounds and pence. Leave the price blank for POA, or enter values such as `23`, `23.50`, or `23.96`.
 
+For the contact page map, use Google Maps `Share > Embed a map > Copy HTML`. The admin form accepts either the full iframe HTML or just the `src` URL. Google Maps short links such as `maps.app.goo.gl` are share links, not embeddable iframe URLs.
+
 ## Supabase Setup
 
 1. Create a Supabase project.

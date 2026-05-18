@@ -603,8 +603,11 @@ export default function AdminPage() {
                             <textarea rows={3} value={settingsText.addressLines} onChange={(event) => setSettingsText({ ...settingsText, addressLines: event.target.value })} className="w-full p-3 border border-vintage-charcoal/20 rounded-sm focus:outline-none focus:border-forest-green" />
                         </label>
                         <label className="block space-y-2 md:col-span-2">
-                            <span className="text-sm font-bold text-vintage-charcoal">Google Maps Embed URL</span>
+                            <span className="text-sm font-bold text-vintage-charcoal">Google Maps Embed URL or Iframe HTML</span>
                             <input value={settings.mapEmbedUrl} onChange={(event) => setSettings({ ...settings, mapEmbedUrl: event.target.value })} className="w-full p-3 border border-vintage-charcoal/20 rounded-sm focus:outline-none focus:border-forest-green" />
+                            <span className="block text-xs text-vintage-charcoal/60">
+                                Use Google Maps Share, Embed a map, then paste either the iframe HTML or just its src URL.
+                            </span>
                         </label>
                         <label className="block space-y-2 md:col-span-2">
                             <span className="text-sm font-bold text-vintage-charcoal">Opening Hours</span>
