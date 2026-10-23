@@ -52,6 +52,22 @@ GitHub rejected the initial push of an active Actions workflow because the conne
 
 ## Verification evidence
 
-Final checks and preview link are recorded below when verification completes. Raw local reports are in ignored `test-results/`.
+Review: [PR #1](https://github.com/itslizzyy/willesden-rec/pull/1) · [private Netlify preview](https://deploy-preview-1--adorable-sunshine-a6e527.netlify.app).
+
+Verified application commit: `ac177d5800bc948cf6be03290665ad84e8d088d9`; Netlify deploy `6adb81341ec098d76778399e`. Subsequent documentation-only commits may use `[skip netlify]`; the application is identical.
+
+- ESLint, 7 regression tests, TypeScript, production build: pass.
+- 56 local HTTP/integration checks: pass, including owner writes, anonymous denial, invalid/oversized images, decimal prices, duplicate slugs, sold state, deletion, settings, canonical tags and noindex.
+- 45 layout checks across nine page types at 320/375/768/1024/1440 CSS pixels: no overflow, missing images, duplicate main headings, or nested link/buttons.
+- 18 automated WCAG 2 A/AA and 2.1 AA scans at phone/desktop widths: no reported violations after contrast fixes. Hosted admin scan also clean.
+- Actual browser login, product create/edit/delete, failed-save recovery, draft retention, edit focus, photo upload, mobile menu Escape, and gallery keyboard/modal/focus restoration: pass. Test photo reduced from 3000×2200 to 2000×1467 WebP before upload.
+- 22 hosted checks: pass, including owner inventory, public access restriction, image upload/download, product mutation, all main routes, structured sold state and preview robots.
+- Simulated database outage: listing/stock responses fail with an error state and no demo products. Deleted listing returns 404. Privileged server key absent from browser build assets.
+- Temporary verification products/photos removed. Original ten products and five photos retained. The live domain still returns its existing site, and anonymous staging requests still return 401.
+- Netlify deploy, header and redirect checks pass. Pages-changed check is skipped by Netlify. GitHub Actions is not enabled (permission limitation above).
+
+Testing used the T3 Chromium browser with responsive CSS viewports; physical iOS/Android devices and Safari/Firefox were not independently tested. Desktop private-preview stock navigation measured LCP 2.35 s and CLS 0 in one unthrottled lab run; this includes Netlify's private-preview overhead and is not a field Core Web Vitals certification. Confirm real devices and post-launch performance after the domain cutover.
+
+Raw local evidence: ignored `test-results/integration.json`, `browser.json`, `hosted.json`, and `audit-production.json`.
 
 References: [Netlify external DNS](https://docs.netlify.com/manage/domains/configure-domains/configure-external-dns/), [Next.js metadata](https://nextjs.org/docs/app/api-reference/functions/generate-metadata), [Google canonical URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls), [existing site's sitemap](https://www.willesdenreclamation.co.uk/wp-sitemap.xml).
