@@ -39,6 +39,8 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 - Saved an independent local baseline backup containing inventory, settings, and original photo files under `~/.local/share/willesden-rec/backups/2026-10-23/`. Its manifest contains photo hashes. This is a local backup, not yet an automated/off-device backup policy.
 - Documentation-only follow-up commits use `[skip netlify]` to avoid spending build credits; the accepted application deployment remains as listed above.
 
+For the subsequent codebase polish and domain handover, see [delivery.md](delivery.md).
+
 ## Before public launch
 
 - Review all stock with the business. Existing inventory contains eight example catalogue entries and two products explicitly named as tests; migrated data is not confirmed real business stock.
@@ -55,7 +57,7 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 - Supabase's leaked-password protection is a paid-plan feature. The owner password is randomly generated, public signup is disabled, and minimum password length is 12. This is not equivalent to enabling the paid feature.
 - Review security/performance advisors after database changes. Recheck that public database roles cannot insert, update, delete, or upload.
 - Test deployments before making them public, and use a separate staging database before experimenting against real inventory.
-- Existing server code can fall back to example catalogue data when the database is unavailable. Review that failure behavior before public launch so an outage cannot advertise example stock.
+- The deliverable-base branch removes the example catalogue fallback; database failures display an error, and missing/deleted listings remain absent.
 - Reset an admin password through Supabase Auth or the server-side Admin API; custom SMTP must be configured and tested before relying on password-reset email.
 
 References: [Netlify Next.js](https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview/), [Supabase backups](https://supabase.com/docs/guides/platform/backups), [Supabase pricing](https://supabase.com/pricing).

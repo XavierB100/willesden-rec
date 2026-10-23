@@ -2,10 +2,10 @@
 
 :root {
   /* Core Palette */
-  --vintage-charcoal: #2C3E50;
-  --vintage-cream: #F5F5F0;
-  --vintage-gold: #C5A059;
-  --forest-green: #2F4F4F;
+  --vintage-charcoal: #2c3e50;
+  --vintage-cream: #f5f5f0;
+  --vintage-gold: #c5a059;
+  --forest-green: #2f4f4f;
   --vintage-moss: #0d2818;
 
   /* Defaults */
@@ -31,4 +31,49 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+html {
+  scroll-padding-top: 6rem;
+}
+:focus-visible {
+  outline: 2px solid var(--forest-green);
+  outline-offset: 3px;
+}
+main {
+  overflow-wrap: anywhere;
+}
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+input,
+select,
+textarea {
+  max-width: 100%;
+  font-size: 16px;
+}
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  background: white;
+  color: var(--vintage-charcoal);
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

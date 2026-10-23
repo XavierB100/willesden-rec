@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getProducts } from "@/lib/data";
 
-const siteUrl = "https://willesdenreclamation.co.uk";
+import { SITE_URL as siteUrl } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getProducts({ includeSold: true });
-  const now = new Date();
 
   const staticRoutes = [
     "",
@@ -20,13 +21,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticRoutes.map((route) => ({
       url: `${siteUrl}${route}`,
-      lastModified: now,
       changeFrequency: "weekly" as const,
       priority: route === "" ? 1 : 0.8,
     })),
     ...products.map((product) => ({
       url: `${siteUrl}/products/${product.slug || product.id}`,
-      lastModified: product.updatedAt ? new Date(product.updatedAt) : now,
+      lastModified: product.updatedAt ? new Date(product.updatedAt) : undefined,
       changeFrequency: "daily" as const,
       priority: product.status === "available" ? 0.7 : 0.4,
     })),
