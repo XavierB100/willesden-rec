@@ -34,6 +34,12 @@ Set Netlify variables for both builds and functions. Production and deploy-previ
 
 SEO canonicals, social metadata, structured data, and sitemap URLs use the final www domain. The indexability switch is separate from the enquiry-link origin. A missing/failed catalogue database produces an error state, never example products. Missing listings return 404. Public business details retain the checked-in defaults if settings cannot load; admin settings reads fail explicitly so defaults cannot accidentally overwrite the database.
 
+## Catalogue review
+
+PR deploy previews can show a labelled sample catalogue with 36 fictional listings in every category, predominantly portrait photos, some landscape photos, and multi-photo examples. Samples are isolated from the live inventory and have no enquiry action. See [sample catalogue and photo credits](notes/review-stock.md) for the preview switch and sources.
+
+Stock/category pages paginate after six rows at each responsive size. Latest Arrivals stays limited to five items.
+
 ## Owner management
 
 Open `/admin` and sign in as the configured Supabase Auth owner. Public signups are disabled.

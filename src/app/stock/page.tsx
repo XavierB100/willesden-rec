@@ -1,12 +1,12 @@
+import { getStorefrontProducts } from "@/lib/storefront-data";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import {
-  getProducts,
   PRODUCT_CATEGORIES,
   type Product,
   type ProductCategory,
 } from "@/lib/data";
-import { ProductCard } from "@/components/products/ProductCard";
+import { ProductListing } from "@/components/products/ProductListing";
 import { Button, ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = pageMetadata(
@@ -67,7 +67,7 @@ export default async function StockPage({ searchParams }: StockPageProps) {
     ? params?.category
     : undefined;
   const selectedSort = isStockSort(params?.sort) ? params.sort : "latest";
-  const filteredProducts = await getProducts({
+  const filteredProducts = await getStorefrontProducts({
     category: selectedCategory,
     includeSold: true,
   });
@@ -136,15 +136,7 @@ export default async function StockPage({ searchParams }: StockPageProps) {
         </div>
 
         {sortedProducts.length > 0 ? (
-          <div className="product-grid">
-            {sortedProducts.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                priority={index === 0}
-              />
-            ))}
-          </div>
+          <ProductListing key={`${selectedCategory || "all"}-${selectedSort}`} products={sortedProducts} />
         ) : (
           <div className="text-center py-20 opacity-60 font-serif text-xl">
             No items found in this category. Please contact us for unlisted

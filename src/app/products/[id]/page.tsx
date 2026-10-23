@@ -1,3 +1,5 @@
+import { getStorefrontProductByIdentifier } from "@/lib/storefront-data";
+import { reviewPhotoCredit } from "@/lib/review-stock";
 import { SITE_URL, pageMetadata, jsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -5,7 +7,6 @@ import { ProductGallery } from "@/components/products/ProductGallery";
 import {
   buildWhatsAppUrl,
   formatPrice,
-  getProductByIdentifier,
   getSiteSettings,
 } from "@/lib/data";
 import { ArrowLeft, MessageCircle, Ruler, Tag } from "lucide-react";
@@ -22,7 +23,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const product = await getProductByIdentifier(id);
+  const product = await getStorefrontProductByIdentifier(id);
 
   if (!product) {
     return {
@@ -41,7 +42,7 @@ export async function generateMetadata({
 export default async function ProductPage({ params }: PageProps) {
   const { id } = await params;
   const [product, settings] = await Promise.all([
-    getProductByIdentifier(id),
+    getStorefrontProductByIdentifier(id),
     getSiteSettings(),
   ]);
 
@@ -56,6 +57,7 @@ export default async function ProductPage({ params }: PageProps) {
     "",
   );
   const productUrl = `${siteUrl}/products/${product.slug || product.id}`;
+  const credit = product.sample ? reviewPhotoCredit(product) : undefined;
   const whatsappUrl = buildWhatsAppUrl(
     settings.whatsappNumber,
     `Hi, I'm interested in ${product.title}. Here's the listing: ${productUrl}. Is it still available?`,
@@ -63,7 +65,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-vintage-cream py-12 px-4 md:px-8">
-      <script
+      {!product.sample && <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: jsonLd({
@@ -92,7 +94,7 @@ export default async function ProductPage({ params }: PageProps) {
               : {}),
           }),
         }}
-      />
+      />}
       <div className="max-w-6xl mx-auto space-y-8">
         <Link
           href="/stock"
@@ -112,7 +114,7 @@ export default async function ProductPage({ params }: PageProps) {
           <div className="flex flex-col space-y-8 py-4">
             <div className="space-y-4">
               <span className="inline-block text-forest-green text-sm font-bold uppercase tracking-wider">
-                {product.category}
+                {product.category}{product.sample && " · Sample"}
               </span>
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-vintage-charcoal leading-tight">
                 {product.title}
@@ -141,7 +143,12 @@ export default async function ProductPage({ params }: PageProps) {
             </div>
 
             <div className="pt-8 mt-auto">
-              {product.status === "available" ? (
+              {product.sample ? (
+                <div className="space-y-3">
+                  <p className="font-semibold">Sample listing — unavailable to purchase</p>
+                  {credit && <p className="text-sm">Photo by <a href={credit.source} target="_blank" rel="noopener noreferrer" className="underline">{credit.photographer} on Unsplash</a>. Images are reframed for layout review.</p>}
+                </div>
+              ) : product.status === "available" ? (
                 <div>
                   <ButtonLink
                     href={whatsappUrl}

@@ -5,6 +5,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { isReviewStockEnabled } from "@/lib/review-mode";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -73,6 +74,11 @@ export default async function RootLayout({
           Skip to content
         </a>
         <Navbar whatsappNumber={settings.whatsappNumber} />
+        {isReviewStockEnabled() && (
+          <aside aria-label="Sample catalogue notice" className="border-b border-vintage-gold/40 bg-vintage-gold/10 px-4 py-2 text-center text-xs text-vintage-charcoal">
+            <strong>Sample catalogue for review.</strong> 252 fictional listings with stock photos; these items are not available to buy.
+          </aside>
+        )}
         <main id="main-content" tabIndex={-1} className="flex-grow min-w-0">
           {children}
         </main>

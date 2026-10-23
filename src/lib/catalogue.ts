@@ -13,6 +13,7 @@ export type ProductStatus = "available" | "sold";
 
 export interface Product {
   id: string;
+  sample?: boolean;
   legacyId?: string | null;
   title: string;
   slug: string;

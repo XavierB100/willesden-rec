@@ -5,5 +5,8 @@
 [build.environment]
   NODE_VERSION = "22"
 
+[context.deploy-preview.environment]
+  REVIEW_SAMPLE_STOCK = "true"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"

@@ -1,8 +1,8 @@
+import { getStorefrontProducts } from "@/lib/storefront-data";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ProductCard } from "@/components/products/ProductCard";
 import { ButtonLink } from "@/components/ui/Button";
-import { getProducts } from "@/lib/data";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata(
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const latestProducts = await getProducts({ includeSold: false, limit: 5 });
+  const latestProducts = await getStorefrontProducts({ includeSold: false, limit: 5 });
 
   return (
     <div className="flex flex-col min-h-screen">
