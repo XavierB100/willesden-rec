@@ -21,8 +21,8 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 - Copied 10 existing inventory rows, one settings row, and five photos into the dedicated project. Preserved product identifiers, prices, categories, statuses, and timestamps. Verified copied photos with SHA-256 comparisons.
 - Enabled RLS and explicit public SELECT-only grants on catalogue/settings tables. Product changes and uploads require the owner account through the server API.
 - Disabled public signups and anonymous Auth users. Configured the Netlify staging address as the Auth site URL, with exact staging/local admin redirects.
-- Created the website owner login. Its email is the same as the itslizzyy service-account email, configured privately in `ADMIN_EMAIL`.
-- Stored the generated website-admin password in macOS login Keychain as **Willesden Reclamation website admin**. Stored the database password as **Willesden Reclamation Supabase database**. Use Passwords/Keychain Access to view them after local authentication; do not paste them into Git or chat.
+- Restored the previous website owner login in the dedicated Supabase project, using the owner-supplied email and password. The private `ADMIN_EMAIL` configuration matches this login in local, production, and deploy-preview environments. Service ownership remains itslizzyy.
+- Stored the website-admin password in macOS login Keychain as **Willesden Reclamation website admin**. Stored the database password as **Willesden Reclamation Supabase database**. Use Passwords/Keychain Access to view them after local authentication; do not paste them into Git or chat.
 - Limited image uploads to JPEG, PNG, WebP, AVIF, and GIF, maximum 4 MB per image, in both the application and storage bucket.
 - Scoped Vercel-only telemetry to Vercel deployments to avoid missing script requests on Netlify.
 - Reconciled database migration history with the SQL files in this repository.
@@ -38,6 +38,8 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 - Security/performance advisors: no performance findings; the only remaining security warning is leaked-password protection, which requires a paid plan. Public execution of the internal automatic-RLS function was revoked.
 - Saved an independent local baseline backup containing inventory, settings, and original photo files under `~/.local/share/willesden-rec/backups/2026-10-23/`. Its manifest contains photo hashes. This is a local backup, not yet an automated/off-device backup policy.
 - Documentation-only follow-up commits use `[skip netlify]` to avoid spending build credits; the accepted application deployment remains as listed above.
+
+For the subsequent codebase polish and domain handover, see [delivery.md](delivery.md).
 
 ## Before public launch
 
@@ -55,7 +57,7 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 - Supabase's leaked-password protection is a paid-plan feature. The owner password is randomly generated, public signup is disabled, and minimum password length is 12. This is not equivalent to enabling the paid feature.
 - Review security/performance advisors after database changes. Recheck that public database roles cannot insert, update, delete, or upload.
 - Test deployments before making them public, and use a separate staging database before experimenting against real inventory.
-- Existing server code can fall back to example catalogue data when the database is unavailable. Review that failure behavior before public launch so an outage cannot advertise example stock.
+- The deliverable-base branch removes the example catalogue fallback; database failures display an error, and missing/deleted listings remain absent.
 - Reset an admin password through Supabase Auth or the server-side Admin API; custom SMTP must be configured and tested before relying on password-reset email.
 
 References: [Netlify Next.js](https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview/), [Supabase backups](https://supabase.com/docs/guides/platform/backups), [Supabase pricing](https://supabase.com/pricing).

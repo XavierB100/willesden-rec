@@ -1,15 +1,16 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ProductCard } from "@/components/products/ProductCard";
-import { Button } from "@/components/ui/Button";
+import { ButtonLink } from "@/components/ui/Button";
 import { getProducts } from "@/lib/data";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Willesden Reclamation | Architectural Salvage in London",
-  description:
-    "Browse reclaimed Victorian fireplaces, antique doors, windows, garden pieces, and architectural salvage from Willesden Reclamation in London NW10.",
-};
+export const metadata: Metadata = pageMetadata(
+  "Willesden Reclamation | Architectural Salvage in London",
+  "Browse reclaimed Victorian fireplaces, antique doors, windows, garden pieces, and architectural salvage from Willesden Reclamation in London NW10.",
+  "/",
+);
 
 export const dynamic = "force-dynamic";
 
@@ -28,23 +29,26 @@ export default async function Home() {
             </span>
             <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight">
               Reclaiming London&apos;s <br />
-              <span className="text-vintage-gold italic">Architectural Soul</span>
+              <span className="text-vintage-gold italic">
+                Architectural Soul
+              </span>
             </h1>
             <p className="text-lg md:text-xl text-vintage-cream/80 max-w-2xl font-sans leading-relaxed">
               Original Victorian fireplaces, antique doors, reclaimed windows,
               and unique salvaged items from our Willesden yard.
             </p>
             <div className="pt-4 flex flex-col md:flex-row gap-4">
-              <Link href="/stock">
-                <Button size="lg" className="w-full md:w-auto">
-                  View Current Stock
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button size="lg" variant="outline" className="w-full md:w-auto border-vintage-gold text-vintage-gold hover:bg-vintage-gold hover:text-vintage-charcoal">
-                  Visit the Yard
-                </Button>
-              </Link>
+              <ButtonLink href="/stock" size="lg" className="w-full md:w-auto">
+                View Current Stock
+              </ButtonLink>
+              <ButtonLink
+                href="/contact"
+                size="lg"
+                variant="outline"
+                className="w-full md:w-auto border-vintage-gold text-vintage-gold hover:bg-vintage-gold hover:text-vintage-charcoal"
+              >
+                Visit the Yard
+              </ButtonLink>
             </div>
           </div>
         </div>
@@ -57,11 +61,14 @@ export default async function Home() {
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-vintage-charcoal">
                 Latest Arrivals
               </h2>
-              <p className="text-vintage-charcoal/60 font-sans">
+              <p className="text-vintage-charcoal/80 font-sans">
                 Fresh from our Willesden yard.
               </p>
             </div>
-            <Link href="/stock" className="hidden md:flex items-center text-forest-green hover:text-vintage-charcoal font-medium transition-colors">
+            <Link
+              href="/stock"
+              className="hidden md:flex items-center text-forest-green hover:text-vintage-charcoal font-medium transition-colors"
+            >
               View All Stock <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </div>
@@ -69,21 +76,24 @@ export default async function Home() {
           {latestProducts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {latestProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} priority={index === 0} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  priority={index === 0}
+                />
               ))}
             </div>
           ) : (
-            <div className="py-16 text-center text-vintage-charcoal/60 font-serif text-xl">
-              New stock is being prepared. Please contact the yard for current availability.
+            <div className="py-16 text-center text-vintage-charcoal/80 font-serif text-xl">
+              New stock is being prepared. Please contact the yard for current
+              availability.
             </div>
           )}
 
           <div className="md:hidden flex justify-center pt-8">
-            <Link href="/stock">
-              <Button variant="outline" className="w-full">
-                View All Stock
-              </Button>
-            </Link>
+            <ButtonLink href="/stock" variant="outline" className="w-full">
+              View All Stock
+            </ButtonLink>
           </div>
         </div>
       </section>

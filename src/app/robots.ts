@@ -1,15 +1,12 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl = "https://willesdenreclamation.co.uk";
-
+import { SITE_URL, IS_INDEXABLE } from "@/lib/seo";
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/admin", "/api"],
-    },
-    sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    rules: IS_INDEXABLE
+      ? { userAgent: "*", allow: "/", disallow: ["/admin", "/api/"] }
+      : { userAgent: "*", disallow: "/" },
+    ...(IS_INDEXABLE
+      ? { sitemap: `${SITE_URL}/sitemap.xml`, host: SITE_URL }
+      : {}),
   };
 }
