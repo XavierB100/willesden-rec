@@ -1,5 +1,7 @@
 # Willesden Reclamation
 
+Version **1.0.0 (v1)** — the approved deliverable baseline. The `v1` Git tag identifies the merged baseline before future design changes.
+
 Maintained by **itslizzyy**. Next.js and React website with Supabase inventory, owner-only management, photo uploads, and WhatsApp enquiries. Hosted on Netlify.
 
 The deliverable base is prepared for **https://www.willesdenreclamation.co.uk**. Staging remains private and noindex. See [delivery and domain handover](notes/delivery.md), [hosting](notes/hosting.md), and the [existing URL inventory](notes/existing-urls.csv).
