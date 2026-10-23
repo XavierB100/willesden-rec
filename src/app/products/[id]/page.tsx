@@ -1,5 +1,4 @@
 import { getStorefrontProductByIdentifier } from "@/lib/storefront-data";
-import { reviewPhotoCredit } from "@/lib/review-stock";
 import { SITE_URL, pageMetadata, jsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -57,7 +56,6 @@ export default async function ProductPage({ params }: PageProps) {
     "",
   );
   const productUrl = `${siteUrl}/products/${product.slug || product.id}`;
-  const credit = product.sample ? reviewPhotoCredit(product) : undefined;
   const whatsappUrl = buildWhatsAppUrl(
     settings.whatsappNumber,
     `Hi, I'm interested in ${product.title}. Here's the listing: ${productUrl}. Is it still available?`,
@@ -146,7 +144,6 @@ export default async function ProductPage({ params }: PageProps) {
               {product.sample ? (
                 <div className="space-y-3">
                   <p className="font-semibold">Sample listing — unavailable to purchase</p>
-                  {credit && <p className="text-sm">Photo by <a href={credit.source} target="_blank" rel="noopener noreferrer" className="underline">{credit.photographer} on Unsplash</a>. Images are reframed for layout review.</p>}
                 </div>
               ) : product.status === "available" ? (
                 <div>

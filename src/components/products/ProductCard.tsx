@@ -21,6 +21,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
     ? product.imageUrls
     : [PRODUCT_IMAGE_PLACEHOLDER];
   const [activeIndex, setActiveIndex] = useState(0);
+  const [aspectRatio, setAspectRatio] = useState(product.imageUrls.length ? 3 / 4 : 1);
   const hasMultipleImages = images.length > 1;
   const href = `/products/${product.slug || product.id}`;
 
@@ -41,8 +42,8 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   }
 
   return (
-    <div className="group flex min-w-0 flex-col bg-white border border-vintage-charcoal/5 hover:border-vintage-gold/50 transition-all duration-300 hover:shadow-lg rounded-sm overflow-hidden">
-      <div className="relative aspect-square bg-vintage-cream overflow-hidden">
+    <div className="group flex min-w-0 flex-col self-start bg-white border border-vintage-gold/50 transition-shadow duration-300 hover:shadow-lg rounded-sm overflow-hidden">
+      <div className="relative w-full shrink-0 bg-vintage-cream overflow-hidden" style={{ aspectRatio }}>
         {product.status === "sold" && (
           <div className="absolute bottom-3 right-3 z-20 bg-vintage-charcoal text-vintage-cream text-xs font-bold px-3 py-1 uppercase tracking-widest">
             Sold
@@ -54,6 +55,11 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           title={product.title}
           sizes={CARD_IMAGE_SIZES}
           eager={priority}
+          onAspectRatioChange={(ratio) => {
+            // Centre wide photos in the taller portrait stage rather than
+            // shortening the whole card when a landscape photo is selected.
+            setAspectRatio(ratio > 1 ? 3 / 4 : ratio);
+          }}
         />
         {hasMultipleImages && (
           <>
@@ -93,15 +99,15 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           {product.title}
         </h3>
 
-        <div className="mt-auto pt-1.5 flex flex-col gap-1 items-start border-t border-vintage-charcoal/5">
-          <span className="font-serif text-lg md:text-xl leading-snug font-bold text-vintage-charcoal">
+        <div className="mt-auto pt-1.5 grid grid-cols-[auto_minmax(0,1fr)] gap-1.5 items-center border-t border-vintage-charcoal/5">
+          <span className="whitespace-nowrap font-serif text-base md:text-lg leading-snug font-bold text-vintage-charcoal">
             {formatPrice(product.price)}
           </span>
           <ButtonLink
             href={href}
             size="sm"
             variant="outline"
-            className="w-full px-2 text-xs md:text-sm"
+            className="min-w-0 px-1 py-1 text-[10px] sm:text-xs"
           >
             View Details
           </ButtonLink>

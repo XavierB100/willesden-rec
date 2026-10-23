@@ -11,6 +11,16 @@ const titles: Record<ProductCategory, string[]> = {
   Other: ["Vintage copper vessels", "Decorative metal frames", "Brass lion-head door knocker", "Vintage toggle light switches"],
 };
 
+const descriptions: Record<ProductCategory, string> = {
+  Fireplaces: "A classic fireplace feature with decorative detailing and a traditional profile. A focal point for a character interior.",
+  Doors: "A traditional entrance door with panelled detailing and a weathered finish. Its colour and texture bring character to a doorway.",
+  Windows: "A period-style window with a distinctive frame and traditional proportions. A simple architectural feature for a character setting.",
+  Lighting: "A vintage-style light with a decorative silhouette and warm character. Suitable as an accent in a reading corner or living space.",
+  Garden: "A decorative garden feature with a textured finish and classical detailing. A focal point beside planting, a path or a sheltered terrace.",
+  Furniture: "A traditional chair with a distinctive profile and decorative details. A character piece for a dining area or quiet corner.",
+  Other: "An architectural accent with decorative metalwork and a distinctive finish. A small detail that brings character to an interior.",
+};
+
 // Deliberately repeated sample listings provide full pages in every category.
 // Alternate gallery images are crops of the same source, not other products.
 export const REVIEW_PRODUCTS: Product[] = Array.from({ length: 36 }, (_, index) =>
@@ -27,7 +37,7 @@ export const REVIEW_PRODUCTS: Product[] = Array.from({ length: 36 }, (_, index) 
       id: slug,
       slug,
       title: `${titles[category][photoIndex]} ${String(index + 1).padStart(2, "0")}`,
-      description: "Fictional sample listing for layout review only. This is not Willesden Reclamation stock and cannot be purchased. Gallery images show alternate portrait and landscape crops of a stock photograph.",
+      description: descriptions[category],
       category,
       price: index % 7 === 0 ? null : 45 + index * 15 + categoryIndex * 25,
       status: index % 11 === 10 ? "sold" : "available",
@@ -37,7 +47,3 @@ export const REVIEW_PRODUCTS: Product[] = Array.from({ length: 36 }, (_, index) 
     };
   }),
 ).flat();
-
-export function reviewPhotoCredit(product: Product) {
-  return photos.find((photo) => product.imageUrls.some((url) => url === photo.portrait || url === photo.landscape));
-}

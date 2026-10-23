@@ -20,7 +20,7 @@ test("every category has enough labelled samples for pagination and mixed galler
   for (const category of PRODUCT_CATEGORIES) {
     const products = REVIEW_PRODUCTS.filter((product) => product.category === category);
     assert.equal(products.length, 36);
-    assert.ok(products.every((product) => product.sample && product.description.includes("Fictional sample")));
+    assert.ok(products.every((product) => product.sample && product.description.length > 40));
     assert.ok(products.some((product) => product.imageUrls.length > 1));
     assert.ok(products.some((product) => product.imageUrls[0]?.includes("landscape")));
     assert.ok(products.filter((product) => product.imageUrls[0]?.includes("portrait")).length > 20);
