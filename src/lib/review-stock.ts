@@ -31,7 +31,7 @@ export const REVIEW_PRODUCTS: Product[] = Array.from({ length: 36 }, (_, index) 
     const landscapeFirst = index % 4 === 3;
     const imageUrls = [landscapeFirst ? photo.landscape : photo.portrait];
     if (index % 3 === 0) imageUrls.push(landscapeFirst ? photo.portrait : photo.landscape);
-    // Keep one empty-photo example to review the square placeholder as well.
+    // Keep one empty-photo example to review the portrait placeholder as well.
     if (index === 35) imageUrls.length = 0;
     return {
       id: slug,

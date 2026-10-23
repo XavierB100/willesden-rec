@@ -13,7 +13,6 @@ interface ProductPhotoProps {
   title: string;
   sizes: string;
   eager?: boolean;
-  onAspectRatioChange?: (ratio: number) => void;
 }
 
 /** Keep the current photo visible until its replacement has loaded and decoded. */
@@ -23,7 +22,6 @@ export function ProductPhoto({
   title,
   sizes,
   eager = false,
-  onAspectRatioChange,
 }: ProductPhotoProps) {
   const frame = useRef<HTMLDivElement>(null);
   const activeImage = images[activeIndex] || images[0];
@@ -87,12 +85,8 @@ export function ProductPhoto({
           loading={eager || src !== displayedImage || attempt > 0 ? "eager" : "lazy"}
           fetchPriority={eager && activeIndex === 0 ? "high" : "auto"}
           className={`object-contain ${src === displayedImage && failedImage !== src ? "opacity-100" : "opacity-0"}`}
-          onLoad={(event) => {
+          onLoad={() => {
             if (src !== activeImage) return;
-            const { naturalWidth, naturalHeight } = event.currentTarget;
-            if (naturalWidth > 0 && naturalHeight > 0) {
-              onAspectRatioChange?.(naturalWidth / naturalHeight);
-            }
             setLoadedImage(src);
             setDisplayedImage(src);
             setFailedImage(undefined);

@@ -21,7 +21,6 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
     ? product.imageUrls
     : [PRODUCT_IMAGE_PLACEHOLDER];
   const [activeIndex, setActiveIndex] = useState(0);
-  const [aspectRatio, setAspectRatio] = useState(product.imageUrls.length ? 3 / 4 : 1);
   const hasMultipleImages = images.length > 1;
   const href = `/products/${product.slug || product.id}`;
 
@@ -42,8 +41,8 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   }
 
   return (
-    <div className="group flex min-w-0 flex-col self-start bg-white border border-vintage-gold/50 transition-shadow duration-300 hover:shadow-lg rounded-sm overflow-hidden">
-      <div className="relative w-full shrink-0 bg-vintage-cream overflow-hidden" style={{ aspectRatio }}>
+    <div className="group flex min-w-0 flex-col bg-white border border-vintage-gold/50 transition-shadow duration-300 hover:shadow-lg rounded-sm overflow-hidden">
+      <div className="relative aspect-[3/4] w-full shrink-0 bg-vintage-cream overflow-hidden">
         {product.status === "sold" && (
           <div className="absolute bottom-3 right-3 z-20 bg-vintage-charcoal text-vintage-cream text-xs font-bold px-3 py-1 uppercase tracking-widest">
             Sold
@@ -55,11 +54,6 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           title={product.title}
           sizes={CARD_IMAGE_SIZES}
           eager={priority}
-          onAspectRatioChange={(ratio) => {
-            // Centre wide photos in the taller portrait stage rather than
-            // shortening the whole card when a landscape photo is selected.
-            setAspectRatio(ratio > 1 ? 3 / 4 : ratio);
-          }}
         />
         {hasMultipleImages && (
           <>
@@ -95,7 +89,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           {product.category}
           {product.sample && " · Sample"}
         </div>
-        <h3 className="font-serif text-base md:text-lg leading-snug text-vintage-charcoal line-clamp-2">
+        <h3 className="font-serif text-base md:text-lg leading-snug text-vintage-charcoal line-clamp-2 min-h-[2.75rem] md:min-h-[3.125rem]">
           {product.title}
         </h3>
 
