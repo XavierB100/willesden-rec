@@ -91,3 +91,5 @@ Validation: lint, seven regression tests, and production build pass. Browser che
 Final review adjustments: Explore is centered above both footer link columns; stock sorting and Apply share one row on phones; Jump to product now uses the same native disclosure triangle as Categories, with room for its label and wrapped product names. The owner authorized merging PR #1 after verification.
 
 The approved merged baseline is version **1.0.0**, identified by the annotated Git tag `v1` on the PR merge commit. Future design work starts from this baseline.
+
+The previous website owner login was restored at the owner's request, retaining the existing Auth user ID. The supplied password passed direct Supabase login verification, the private `ADMIN_EMAIL` setting was updated for Netlify production/deploy-preview and local use, and Keychain was updated. No password is stored in Git or these notes.

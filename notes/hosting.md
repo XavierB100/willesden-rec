@@ -21,8 +21,8 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 - Copied 10 existing inventory rows, one settings row, and five photos into the dedicated project. Preserved product identifiers, prices, categories, statuses, and timestamps. Verified copied photos with SHA-256 comparisons.
 - Enabled RLS and explicit public SELECT-only grants on catalogue/settings tables. Product changes and uploads require the owner account through the server API.
 - Disabled public signups and anonymous Auth users. Configured the Netlify staging address as the Auth site URL, with exact staging/local admin redirects.
-- Created the website owner login. Its email is the same as the itslizzyy service-account email, configured privately in `ADMIN_EMAIL`.
-- Stored the generated website-admin password in macOS login Keychain as **Willesden Reclamation website admin**. Stored the database password as **Willesden Reclamation Supabase database**. Use Passwords/Keychain Access to view them after local authentication; do not paste them into Git or chat.
+- Restored the previous website owner login in the dedicated Supabase project, using the owner-supplied email and password. The private `ADMIN_EMAIL` configuration matches this login in local, production, and deploy-preview environments. Service ownership remains itslizzyy.
+- Stored the website-admin password in macOS login Keychain as **Willesden Reclamation website admin**. Stored the database password as **Willesden Reclamation Supabase database**. Use Passwords/Keychain Access to view them after local authentication; do not paste them into Git or chat.
 - Limited image uploads to JPEG, PNG, WebP, AVIF, and GIF, maximum 4 MB per image, in both the application and storage bucket.
 - Scoped Vercel-only telemetry to Vercel deployments to avoid missing script requests on Netlify.
 - Reconciled database migration history with the SQL files in this repository.
