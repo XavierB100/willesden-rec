@@ -86,3 +86,6 @@ The review changes are included in PR #1:
 - Footer phone and email are actionable `tel:` / `mailto:` links.
 
 Validation: lint, seven regression tests, and production build pass. Browser checks confirm combined-category filtering, product jump and focus, independent list scrolling, expand/collapse, two-column layouts, CTA containment, and contact hrefs. Twenty-four responsive checks across the six affected page types at 320/375/768/1440 px pass. No product or business data was changed for these refinements.
+
+
+Final review adjustments: Explore is centered above both footer link columns; stock sorting and Apply share one row on phones; Jump to product now uses the same native disclosure triangle as Categories, with room for its label and wrapped product names. The owner authorized merging PR #1 after verification.

@@ -107,19 +107,16 @@ export default async function StockPage({ searchParams }: StockPageProps) {
             ))}
           </div>
 
-          <form
-            action="/stock"
-            className="flex flex-col gap-3 sm:flex-row sm:items-end"
-          >
+          <form action="/stock" className="flex items-end gap-2">
             {selectedCategory && (
               <input type="hidden" name="category" value={selectedCategory} />
             )}
-            <label className="flex flex-col gap-2 text-sm font-bold text-vintage-charcoal">
+            <label className="flex min-w-0 flex-1 sm:flex-none sm:w-56 flex-col gap-2 text-sm font-bold text-vintage-charcoal">
               Sort by
               <select
                 name="sort"
                 defaultValue={selectedSort}
-                className="h-11 min-w-56 rounded-sm border-2 border-vintage-charcoal bg-white px-3 text-base font-medium text-vintage-charcoal focus:outline-none focus:border-forest-green"
+                className="h-11 w-full min-w-0 rounded-sm border-2 border-vintage-charcoal bg-white px-3 text-base font-medium text-vintage-charcoal focus:outline-none focus:border-forest-green"
               >
                 {STOCK_SORT_OPTIONS.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -131,7 +128,7 @@ export default async function StockPage({ searchParams }: StockPageProps) {
             <Button
               type="submit"
               variant="outline"
-              className="h-11 sm:self-end"
+              className="h-11 shrink-0 px-4 text-sm"
             >
               Apply
             </Button>

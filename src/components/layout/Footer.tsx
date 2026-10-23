@@ -19,7 +19,7 @@ export async function Footer() {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 text-center">
             <h4 className="text-lg font-serif font-semibold text-vintage-gold">
               Explore
             </h4>

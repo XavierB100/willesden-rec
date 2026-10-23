@@ -60,6 +60,7 @@ function productToForm(product: Product): ProductFormState {
 export default function AdminPage() {
   const supabase = useMemo(() => createBrowserSupabaseClient(), []);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const productJumpRef = useRef<HTMLDetailsElement>(null);
   const editorRef = useRef<HTMLElement>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
   const busy = useRef(false);
@@ -828,7 +829,7 @@ export default function AdminPage() {
               onChange={(event) => setSearch(event.target.value)}
               className="w-full p-3 border border-vintage-charcoal/20 rounded-sm"
             />
-            <div className="grid grid-cols-2 gap-2 items-start">
+            <div className="grid grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] gap-2 items-start">
               <details className="min-w-0 rounded-sm border border-vintage-charcoal/20 text-sm">
                 <summary className="cursor-pointer p-2.5">
                   Categories
@@ -867,25 +868,44 @@ export default function AdminPage() {
                   )}
                 </div>
               </details>
-              <select
-                aria-label="Jump to product"
-                value=""
-                disabled={isLoading || isUploading || !dataReady}
-                onChange={(event) => {
-                  const product = products.find(
-                    (item) => item.id === event.target.value,
-                  );
-                  if (product) selectProduct(product);
-                }}
-                className="w-full min-w-0 rounded-sm border border-vintage-charcoal/20 bg-white p-2.5 text-sm"
+              <details
+                ref={productJumpRef}
+                className="min-w-0 rounded-sm border border-vintage-charcoal/20 text-sm"
               >
-                <option value="">Jump to product</option>
-                {visibleProducts.map((product) => (
-                  <option key={product.id} value={product.id}>
-                    {product.title}
-                  </option>
-                ))}
-              </select>
+                <summary
+                  aria-label="Jump to product"
+                  aria-disabled={isLoading || isUploading || !dataReady}
+                  onClick={(event) => {
+                    if (isLoading || isUploading || !dataReady)
+                      event.preventDefault();
+                  }}
+                  className="cursor-pointer p-2.5"
+                >
+                  Jump to product
+                </summary>
+                <div className="max-h-64 overflow-y-auto overscroll-contain border-t border-vintage-charcoal/10 p-1">
+                  {visibleProducts.length === 0 && (
+                    <p className="p-2 text-sm text-vintage-charcoal/80">
+                      No products match these filters.
+                    </p>
+                  )}
+                  {visibleProducts.map((product) => (
+                    <button
+                      key={product.id}
+                      type="button"
+                      disabled={isLoading || isUploading || !dataReady}
+                      onClick={() => {
+                        selectProduct(product);
+                        if (productJumpRef.current)
+                          productJumpRef.current.open = false;
+                      }}
+                      className="block w-full rounded-sm p-2 text-left text-sm break-words hover:bg-vintage-cream focus-visible:bg-vintage-cream disabled:opacity-50"
+                    >
+                      {product.title}
+                    </button>
+                  ))}
+                </div>
+              </details>
             </div>
             <div
               id="inventory-list"
