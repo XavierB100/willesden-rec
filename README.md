@@ -62,7 +62,7 @@ If the service role key is ever committed, screenshotted publicly, or pasted int
 
 ## Deployment
 
-Netlify reads `netlify.toml`: Node.js 22, build command `npm run build`, and publish directory `.next`. Its Next.js adapter provides the server routes. Set all five application variables in Netlify for production and deploy previews, with values available to both builds and functions. Keep the privileged Supabase key server-side and out of Git.
+Netlify reads `netlify.toml`: Node.js 22, build command `npm run build`, publish directory `.next`, and the explicit `@netlify/plugin-nextjs` adapter that provides server routes. Set all five application variables in Netlify for production and deploy previews, with values available to both builds and functions. Keep the privileged Supabase key server-side and out of Git.
 
 The application needs a full Next.js deployment because the admin dashboard, uploads, and server-side writes require server routes. The old `docs/` static export is an archived build and is not the Netlify publish directory.
 

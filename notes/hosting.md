@@ -14,7 +14,7 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 
 ## Configuration completed
 
-- Added an explicit Next.js build command, `.next` publish directory, and Node.js 22 in `netlify.toml`. The first import published source/static files without a server build and returned a 404 at the homepage.
+- Added an explicit Next.js build command, `.next` publish directory, Node.js 22, and `@netlify/plugin-nextjs` in `netlify.toml`. The first import published source/static files without a server build and returned a 404 at the homepage. Explicit adapter activation was also needed to deploy the server function.
 - Set the five application environment variables for Netlify production and deploy-preview contexts; local values are in ignored `.env.local`.
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` contains a modern publishable key; its existing variable name is retained for compatibility.
 - The server uses the project's legacy service-role key because the new secret key returned `Invalid Compact JWS` from Storage during verification. Keep this server-side; retest modern secret-key support before the provider retires legacy keys. No keys belong in this document or Git.
@@ -29,7 +29,15 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 
 ## Verification
 
-Local lint/build passed during setup. Final hosted acceptance results are recorded below after deployment.
+- `npm run lint` and `npm run build` passed.
+- 35 local production checks passed, including database read/write permissions, image upload/rejection, stock create/edit/sold/delete, owner/non-owner access, all main routes, and absence of the privileged key in browser assets.
+- 31 hosted checks passed against the private Netlify site on 23 October 2026 at approximately 14:02 BST. These covered the actual browser login, stock CRUD with decimal prices, photos, settings save, enquiry links, all public routes, anonymous 401s, and non-owner 403s.
+- Accepted deployment: `6adb5a10f18c0853f0a55b4b`, application commit `05de6d23debe0b432ddde1893ab05a22bcd973f4`. Netlify deployed one Next.js server function and its redirects.
+- Checked the stock catalogue at 1440 px and 375 px and the admin dashboard at 375 px: no horizontal overflow; catalogue images loaded. Vercel-only scripts were absent.
+- Removed all setup-test products, photos, and temporary accounts. Final counts: 10 inventory rows, five photos, and one owner Auth user.
+- Security/performance advisors: no performance findings; the only remaining security warning is leaked-password protection, which requires a paid plan. Public execution of the internal automatic-RLS function was revoked.
+- Saved an independent local baseline backup containing inventory, settings, and original photo files under `~/.local/share/willesden-rec/backups/2026-10-23/`. Its manifest contains photo hashes. This is a local backup, not yet an automated/off-device backup policy.
+- Documentation-only follow-up commits use `[skip netlify]` to avoid spending build credits; the accepted application deployment remains as listed above.
 
 ## Before public launch
 
