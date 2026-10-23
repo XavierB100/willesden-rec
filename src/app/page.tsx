@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata(
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const latestProducts = await getProducts({ includeSold: false, limit: 4 });
+  const latestProducts = await getProducts({ includeSold: false, limit: 5 });
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -74,7 +74,7 @@ export default async function Home() {
           </div>
 
           {latestProducts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="product-grid">
               {latestProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}

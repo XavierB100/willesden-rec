@@ -136,7 +136,7 @@ export default async function StockPage({ searchParams }: StockPageProps) {
         </div>
 
         {sortedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="product-grid">
             {sortedProducts.map((product, index) => (
               <ProductCard
                 key={product.id}

@@ -100,3 +100,22 @@ textarea {
     display: none;
   }
 }
+
+/* Keep stock compact on phones and add one column at each wider breakpoint. */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 0.75rem;
+}
+@media (min-width: 48rem) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+@media (min-width: 64rem) {
+  .product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 80rem) {
+  .product-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}

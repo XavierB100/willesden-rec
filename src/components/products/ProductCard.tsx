@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { CARD_IMAGE_SIZES, ProductPhoto } from "./ProductPhoto";
 import type { MouseEvent } from "react";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -21,7 +21,6 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
     ? product.imageUrls
     : [PRODUCT_IMAGE_PLACEHOLDER];
   const [activeIndex, setActiveIndex] = useState(0);
-  const imageSrc = images[activeIndex] || images[0];
   const hasMultipleImages = images.length > 1;
   const href = `/products/${product.slug || product.id}`;
 
@@ -42,20 +41,19 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   }
 
   return (
-    <div className="group flex flex-col bg-white border border-vintage-charcoal/5 hover:border-vintage-gold/50 transition-all duration-300 hover:shadow-lg rounded-sm overflow-hidden">
-      <div className="relative aspect-[4/5] bg-vintage-cream/40 overflow-hidden">
+    <div className="group flex min-w-0 flex-col bg-white border border-vintage-charcoal/5 hover:border-vintage-gold/50 transition-all duration-300 hover:shadow-lg rounded-sm overflow-hidden">
+      <div className="relative aspect-square bg-vintage-cream/40 overflow-hidden">
         {product.status === "sold" && (
-          <div className="absolute top-4 right-4 z-20 bg-vintage-charcoal text-vintage-cream text-xs font-bold px-3 py-1 uppercase tracking-widest">
+          <div className="absolute bottom-3 right-3 z-20 bg-vintage-charcoal text-vintage-cream text-xs font-bold px-3 py-1 uppercase tracking-widest">
             Sold
           </div>
         )}
-        <Image
-          src={imageSrc}
-          alt={`Photo of ${product.title}`}
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-          priority={priority}
+        <ProductPhoto
+          images={images}
+          activeIndex={activeIndex}
+          title={product.title}
+          sizes={CARD_IMAGE_SIZES}
+          eager={priority}
         />
         {hasMultipleImages && (
           <>
@@ -63,7 +61,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
               type="button"
               onClick={showPrevious}
               aria-label="Show previous product photo"
-              className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/95 p-2.5 text-vintage-charcoal shadow-md ring-1 ring-vintage-charcoal/10 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
+              className="absolute left-1 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/95 p-3 text-vintage-charcoal shadow-md ring-1 ring-vintage-charcoal/10 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -71,7 +69,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
               type="button"
               onClick={showNext}
               aria-label="Show next product photo"
-              className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/95 p-2.5 text-vintage-charcoal shadow-md ring-1 ring-vintage-charcoal/10 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
+              className="absolute right-1 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/95 p-3 text-vintage-charcoal shadow-md ring-1 ring-vintage-charcoal/10 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -82,23 +80,23 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         )}
       </div>
 
-      <div className="flex flex-col flex-grow p-4 space-y-3">
-        <div className="text-xs font-sans text-forest-green uppercase tracking-wide">
+      <div className="flex flex-col flex-grow p-3 md:p-4 space-y-2 md:space-y-3">
+        <div className="text-[10px] md:text-xs font-sans text-forest-green uppercase tracking-wide">
           {product.category}
         </div>
-        <h3 className="font-serif text-lg leading-snug text-vintage-charcoal line-clamp-2 min-h-[3.5rem]">
+        <h3 className="font-serif text-base md:text-lg leading-snug text-vintage-charcoal line-clamp-2 min-h-[2.75rem] md:min-h-[3.5rem]">
           {product.title}
         </h3>
 
-        <div className="mt-auto pt-4 flex flex-wrap gap-3 items-center justify-between border-t border-vintage-charcoal/5">
-          <span className="font-serif text-xl font-bold text-vintage-charcoal">
+        <div className="mt-auto pt-3 flex flex-col gap-2 items-start border-t border-vintage-charcoal/5">
+          <span className="font-serif text-lg md:text-xl font-bold text-vintage-charcoal">
             {formatPrice(product.price)}
           </span>
           <ButtonLink
             href={href}
             size="sm"
             variant="outline"
-            className="shrink-0"
+            className="w-full px-2 text-xs md:text-sm"
           >
             View Details
           </ButtonLink>

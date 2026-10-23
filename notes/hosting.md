@@ -7,7 +7,7 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 - GitHub: https://github.com/itslizzyy/willesden-rec — `main` is the deployment branch.
 - Netlify team: `itslizzyy`.
 - Netlify project: `adorable-sunshine-a6e527` (`fd0cbb78-dfd3-49f2-a2fa-58963f547dc7`).
-- Staging site: https://adorable-sunshine-a6e527.netlify.app — private access while launch checks are pending.
+- Staging site: https://adorable-sunshine-a6e527.netlify.app — publicly shareable for review; search indexing remains disabled.
 - Supabase organization: `Willesden Reclamation` (`wwofwjlszfvsgirzgtjf`), Free plan.
 - Supabase project: `willesden-rec` (`ltkxelclbiverctddsmf`), London / `eu-west-2`.
 - Supabase dashboard: https://supabase.com/dashboard/project/ltkxelclbiverctddsmf.
@@ -41,7 +41,11 @@ Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
 
 For the subsequent codebase polish and domain handover, see [delivery.md](delivery.md).
 
-## Before public launch
+## Review sharing
+
+At the owner’s request on 23 October 2026, Netlify project visibility was customized to **Public** for production and Deploy Previews. Verified the main site without a Netlify login: all 36 read-only site checks passed, including anonymous admin API rejection and noindex. This exposes the review URLs for sharing; it does not approve a domain cutover, enable search indexing, or confirm the example/test catalogue as real inventory. PR changes remain on their own deploy preview until merged.
+
+## Before business launch
 
 - Review all stock with the business. Existing inventory contains eight example catalogue entries and two products explicitly named as tests; migrated data is not confirmed real business stock.
 - Confirm contact details, opening hours, map, prices, dimensions, and images.

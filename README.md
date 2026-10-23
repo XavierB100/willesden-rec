@@ -4,7 +4,7 @@ Version **1.0.0 (v1)** — the approved deliverable baseline. The `v1` Git tag i
 
 Maintained by **itslizzyy**. Next.js and React website with Supabase inventory, owner-only management, photo uploads, and WhatsApp enquiries. Hosted on Netlify.
 
-The deliverable base is prepared for **https://www.willesdenreclamation.co.uk**. Staging remains private and noindex. See [delivery and domain handover](notes/delivery.md), [hosting](notes/hosting.md), and the [existing URL inventory](notes/existing-urls.csv).
+The deliverable base is prepared for **https://www.willesdenreclamation.co.uk**. The Netlify review site and PR previews are publicly shareable, with search indexing disabled. The catalogue still contains example/test stock. See [delivery and domain handover](notes/delivery.md), [hosting](notes/hosting.md), and the [existing URL inventory](notes/existing-urls.csv).
 
 ## Development
 
@@ -59,7 +59,7 @@ For a new environment, run every SQL migration in filename order, including `202
 
 `netlify.toml` builds with `npm run build`, publishes `.next`, and uses the Next.js adapter. This app requires server functions. The obsolete `docs/` static export and unused Vercel telemetry were removed; neither is part of deployment.
 
-Keep the Netlify site private until content, domain, and operational checks in [notes/delivery.md](notes/delivery.md) are approved. Connecting the domain does not require moving its registration or changing the business's email provider.
+Netlify production and deploy previews are public for review at the owner’s request. Keep `SITE_INDEXABLE=false` until the content, domain, and operational checks in [notes/delivery.md](notes/delivery.md) are approved. Connecting the domain does not require moving its registration or changing the business's email provider.
 
 ## Verification
 
