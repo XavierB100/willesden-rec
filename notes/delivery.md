@@ -93,3 +93,7 @@ Final review adjustments: Explore is centered above both footer link columns; st
 The approved merged baseline is version **1.0.0**, identified by the annotated Git tag `v1` on the PR merge commit. Future design work starts from this baseline.
 
 The previous website owner login was restored at the owner's request, retaining the existing Auth user ID. The supplied password passed direct Supabase login verification, the private `ADMIN_EMAIL` setting was updated for Netlify production/deploy-preview and local use, and Keychain was updated. No password is stored in Git or these notes.
+
+## PR #2 review handover
+
+The complete original-to-current comparison, current photo/search/layout behaviour, validation scope and pending owner review are recorded in [change-history.md](change-history.md). PR #2 remains open and unmerged for the planned 24 October 2026 review. Public Netlify sharing does not approve a merge or custom-domain launch.

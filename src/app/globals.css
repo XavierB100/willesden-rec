@@ -119,3 +119,15 @@ textarea {
 @media (min-width: 80rem) {
   .product-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
+
+/* Keep five arrivals on phones; wider layouts get two complete rows. */
+.latest-arrivals-grid > :nth-child(n+6) { display: none; }
+@media (min-width: 48rem) {
+  .latest-arrivals-grid > :nth-child(-n+6) { display: flex; }
+}
+@media (min-width: 64rem) {
+  .latest-arrivals-grid > :nth-child(-n+8) { display: flex; }
+}
+@media (min-width: 80rem) {
+  .latest-arrivals-grid > :nth-child(-n+10) { display: flex; }
+}

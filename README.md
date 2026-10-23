@@ -36,9 +36,11 @@ SEO canonicals, social metadata, structured data, and sitemap URLs use the final
 
 ## Catalogue review
 
+The [complete change history and PR review handover](notes/change-history.md) compares the original app, approved v1 and PR #2, and records the pending production decision.
+
 PR deploy previews can show a labelled sample catalogue with 36 fictional listings in every category, predominantly portrait photos, some landscape photos, and multi-photo examples. Samples are isolated from the live inventory and have no enquiry action. See [sample catalogue and photo credits](notes/review-stock.md) for the preview switch and sources.
 
-Stock search filters titles, categories, descriptions and dimensions immediately as you type. The Apply button commits only the selected sort order; Enter in the search field confirms the current search without applying a pending sort. Searches stay in the URL and can be cleared without losing the selected category/applied sort. Stock/category pages paginate after six rows at each responsive size. Latest Arrivals stays limited to five items.
+Stock search filters titles, categories, descriptions and dimensions immediately as you type. The Apply button commits only the selected sort order; Enter in the search field confirms the current search without applying a pending sort. Searches stay in the URL and can be cleared without losing the selected category/applied sort. Stock/category pages paginate after six rows at each responsive size. Latest Arrivals keeps five items on phones; wider layouts show up to two rows (six, eight or ten items as the grid gains columns).
 
 ## Owner management
 
