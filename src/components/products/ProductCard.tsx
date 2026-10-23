@@ -93,7 +93,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           {product.title}
         </h3>
 
-        <div className="mt-auto pt-1.5 grid grid-cols-[auto_minmax(0,1fr)] gap-1.5 items-center border-t border-vintage-charcoal/5">
+        <div className="mt-auto pt-1.5 grid grid-cols-[auto_minmax(0,1fr)] gap-1 items-center border-t border-vintage-charcoal/5">
           <span className="whitespace-nowrap font-serif text-base md:text-lg leading-snug font-bold text-vintage-charcoal">
             {formatPrice(product.price)}
           </span>
@@ -101,9 +101,11 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             href={href}
             size="sm"
             variant="outline"
-            className="min-w-0 px-1 py-1 text-[10px] sm:text-xs"
+            className="min-w-0 w-fit justify-self-end border-0 p-0 text-[10px] sm:text-xs hover:bg-transparent hover:text-vintage-charcoal"
           >
-            View Details
+            <span className="inline-flex min-h-8 min-w-0 max-w-full items-center justify-center rounded-sm border border-vintage-charcoal px-1.5 py-1 transition-colors hover:bg-vintage-charcoal hover:text-vintage-cream">
+              View Details
+            </span>
           </ButtonLink>
         </div>
       </div>
