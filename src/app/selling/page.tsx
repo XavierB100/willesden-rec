@@ -33,12 +33,12 @@ export default async function SellingPage() {
           </p>
         </div>
 
-        <div className="bg-white p-8 md:p-12 border border-vintage-charcoal/10 shadow-sm space-y-8 rounded-sm">
+        <div className="bg-white p-5 sm:p-8 md:p-12 border border-vintage-charcoal/10 shadow-sm space-y-8 rounded-sm">
           <div className="space-y-4">
             <h2 className="text-2xl font-serif font-bold text-vintage-moss">
               What We Buy
             </h2>
-            <ul className="grid md:grid-cols-2 gap-4 font-sans text-vintage-charcoal/80">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm sm:text-base font-sans text-vintage-charcoal/80">
               {[
                 "Victorian Fireplaces",
                 "Cast Iron Radiators",
@@ -49,7 +49,7 @@ export default async function SellingPage() {
                 "Architectural Stone",
               ].map((item) => (
                 <li key={item} className="flex items-start">
-                  <ArrowRight className="w-5 h-5 mr-2 text-vintage-gold flex-shrink-0" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 mr-1.5 text-vintage-gold flex-shrink-0" />
                   {item}
                 </li>
               ))}
@@ -72,7 +72,7 @@ export default async function SellingPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="lg"
-                className="inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold bg-[#25D366] hover:bg-[#128C7E] text-vintage-charcoal"
+                className="w-full sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold bg-[#25D366] hover:bg-[#128C7E] text-vintage-charcoal"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Send Photos via WhatsApp

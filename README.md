@@ -36,7 +36,7 @@ SEO canonicals, social metadata, structured data, and sitemap URLs use the final
 
 Open `/admin` and sign in as the configured Supabase Auth owner. Public signups are disabled.
 
-- Use the section links to reach Current Products, Add Product, or Site Details. Search inventory by title, category, or status.
+- Use the section links to reach Current Products, Add Product, or Site Details. Search inventory by title, category, or status, combine categories in the multi-select, or jump straight to a matching product. The compact list shows roughly five items and scrolls independently; Show all expands it.
 - Add a title, category, description, dimensions, and price. Blank price means POA; decimal prices use up to two places.
 - Upload up to 20 JPEG, PNG, WebP, AVIF, or GIF images. Phone photos are reduced to a maximum 2000 px edge before upload when needed. Originals may be up to 20 MB; final files must be 4 MB or smaller. GIFs must already meet the 4 MB limit. HEIC is not supported: export JPEG first.
 - Use Up/Down to choose photo order; the first photo appears on catalogue cards. Publish Item saves the product.

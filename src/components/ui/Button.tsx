@@ -18,7 +18,7 @@ export function buttonStyles({
   className,
 }: Pick<ButtonProps, "variant" | "size" | "className"> = {}) {
   return cn(
-    "inline-flex items-center justify-center rounded-sm transition-all duration-300 font-sans tracking-wide font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold disabled:opacity-50 disabled:pointer-events-none",
+    "inline-flex max-w-full gap-2 text-center leading-snug [&>svg]:shrink-0 items-center justify-center rounded-sm transition-all duration-300 font-sans tracking-wide font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold disabled:opacity-50 disabled:pointer-events-none",
     {
       "bg-vintage-charcoal text-vintage-cream hover:bg-forest-green shadow-sm hover:shadow-md":
         variant === "primary",
@@ -26,8 +26,8 @@ export function buttonStyles({
         variant === "outline",
       "text-vintage-charcoal hover:bg-vintage-charcoal/10": variant === "ghost",
       "min-h-11 px-4 py-2 text-sm": size === "sm",
-      "h-11 px-6 text-base": size === "md",
-      "h-14 px-8 text-lg": size === "lg",
+      "min-h-11 px-6 py-2 text-base": size === "md",
+      "min-h-14 px-5 sm:px-8 py-3 text-base sm:text-lg": size === "lg",
     },
     className,
   );

@@ -77,3 +77,26 @@ textarea {
     scroll-behavior: auto !important;
   }
 }
+
+/* Animate the mobile menu without adding an animation runtime. */
+.mobile-navigation {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 240ms ease,
+    opacity 200ms ease,
+    visibility 0s linear 240ms;
+}
+.mobile-navigation[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+@media (min-width: 64rem) {
+  .mobile-navigation {
+    display: none;
+  }
+}

@@ -87,11 +87,11 @@ export default async function StockPage({ searchParams }: StockPageProps) {
         </div>
 
         <div className="space-y-5 border-b border-vintage-charcoal/10 pb-8">
-          <div className="flex flex-wrap gap-2 md:gap-4">
+          <div className="flex flex-wrap gap-1.5 md:gap-4">
             <ButtonLink
               href={stockHref(undefined, selectedSort)}
               variant={!selectedCategory ? "primary" : "outline"}
-              className="min-w-[4rem]"
+              className="min-h-9 px-3 py-1.5 text-xs sm:min-h-11 sm:px-6 sm:py-2 sm:text-base"
             >
               All
             </ButtonLink>
@@ -100,7 +100,7 @@ export default async function StockPage({ searchParams }: StockPageProps) {
                 key={category}
                 href={stockHref(category, selectedSort)}
                 variant={selectedCategory === category ? "primary" : "outline"}
-                className="min-w-[4rem]"
+                className="min-h-9 px-3 py-1.5 text-xs sm:min-h-11 sm:px-6 sm:py-2 sm:text-base"
               >
                 {category}
               </ButtonLink>

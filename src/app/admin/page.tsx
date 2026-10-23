@@ -81,6 +81,10 @@ export default function AdminPage() {
   });
   const [settingsBaseline, setSettingsBaseline] = useState("");
   const [search, setSearch] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<
+    ProductCategory[]
+  >([]);
+  const [expandedInventory, setExpandedInventory] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -90,10 +94,13 @@ export default function AdminPage() {
     dataReady &&
     JSON.stringify({ settings, settingsText }) !== settingsBaseline;
   const userId = session?.user.id;
-  const visibleProducts = products.filter((product) =>
-    `${product.title} ${product.category} ${product.status}`
-      .toLowerCase()
-      .includes(search.toLowerCase()),
+  const visibleProducts = products.filter(
+    (product) =>
+      (!selectedCategories.length ||
+        selectedCategories.includes(product.category)) &&
+      `${product.title} ${product.category} ${product.status}`
+        .toLowerCase()
+        .includes(search.toLowerCase()),
   );
 
   function displaySettings(value: SiteSettings) {
@@ -803,7 +810,7 @@ export default function AdminPage() {
 
           <section
             id="current-products"
-            className="min-w-0 bg-white p-4 sm:p-6 md:p-8 rounded-sm shadow-sm border border-vintage-charcoal/5 space-y-4"
+            className="min-w-0 self-start bg-white p-4 sm:p-6 md:p-8 rounded-sm shadow-sm border border-vintage-charcoal/5 space-y-4"
           >
             <div className="border-b border-vintage-charcoal/10 pb-4">
               <h2 className="text-2xl font-serif font-bold text-vintage-charcoal">
@@ -821,11 +828,81 @@ export default function AdminPage() {
               onChange={(event) => setSearch(event.target.value)}
               className="w-full p-3 border border-vintage-charcoal/20 rounded-sm"
             />
-            <div className="space-y-3 lg:max-h-[760px] lg:overflow-auto pr-1">
+            <div className="grid grid-cols-2 gap-2 items-start">
+              <details className="min-w-0 rounded-sm border border-vintage-charcoal/20 text-sm">
+                <summary className="cursor-pointer p-2.5">
+                  Categories
+                  {selectedCategories.length
+                    ? ` (${selectedCategories.length})`
+                    : ""}
+                </summary>
+                <div className="border-t border-vintage-charcoal/10 p-2 space-y-1">
+                  {PRODUCT_CATEGORIES.map((category) => (
+                    <label
+                      key={category}
+                      className="flex items-center gap-2 py-1.5"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedCategories.includes(category)}
+                        onChange={(event) =>
+                          setSelectedCategories((current) =>
+                            event.target.checked
+                              ? [...current, category]
+                              : current.filter((value) => value !== category),
+                          )
+                        }
+                      />
+                      {category}
+                    </label>
+                  ))}
+                  {selectedCategories.length > 0 && (
+                    <button
+                      type="button"
+                      className="underline py-2"
+                      onClick={() => setSelectedCategories([])}
+                    >
+                      Clear filters
+                    </button>
+                  )}
+                </div>
+              </details>
+              <select
+                aria-label="Jump to product"
+                value=""
+                disabled={isLoading || isUploading || !dataReady}
+                onChange={(event) => {
+                  const product = products.find(
+                    (item) => item.id === event.target.value,
+                  );
+                  if (product) selectProduct(product);
+                }}
+                className="w-full min-w-0 rounded-sm border border-vintage-charcoal/20 bg-white p-2.5 text-sm"
+              >
+                <option value="">Jump to product</option>
+                {visibleProducts.map((product) => (
+                  <option key={product.id} value={product.id}>
+                    {product.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div
+              id="inventory-list"
+              tabIndex={0}
+              role="region"
+              aria-label="Current products list"
+              className={`space-y-2 pr-1 ${expandedInventory ? "" : "max-h-[44rem] overflow-y-auto overscroll-contain"}`}
+            >
+              {visibleProducts.length === 0 && (
+                <p className="py-4 text-sm text-vintage-charcoal/80">
+                  No products match these filters.
+                </p>
+              )}
               {visibleProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="border border-vintage-charcoal/10 rounded-sm p-4 space-y-3"
+                  className="border border-vintage-charcoal/10 rounded-sm p-3 space-y-2"
                 >
                   <div className="flex gap-3">
                     <div className="h-16 w-16 bg-vintage-cream rounded-sm overflow-hidden flex-shrink-0">
@@ -877,6 +954,21 @@ export default function AdminPage() {
                 </div>
               ))}
             </div>
+            {visibleProducts.length > 5 && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="w-full"
+                aria-controls="inventory-list"
+                aria-expanded={expandedInventory}
+                onClick={() => setExpandedInventory((current) => !current)}
+              >
+                {expandedInventory
+                  ? "Compact view"
+                  : `Show all ${visibleProducts.length} products`}
+              </Button>
+            )}
           </section>
         </div>
 

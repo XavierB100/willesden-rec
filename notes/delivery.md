@@ -71,3 +71,18 @@ Testing used the T3 Chromium browser with responsive CSS viewports; physical iOS
 Raw local evidence: ignored `test-results/integration.json`, `browser.json`, `hosted.json`, and `audit-production.json`.
 
 References: [Netlify external DNS](https://docs.netlify.com/manage/domains/configure-domains/configure-external-dns/), [Next.js metadata](https://nextjs.org/docs/app/api-reference/functions/generate-metadata), [Google canonical URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls), [existing site's sitemap](https://www.willesdenreclamation.co.uk/wp-sitemap.xml).
+
+
+## Preview annotation refinements
+
+The review changes are included in PR #1:
+
+- Compact, independently scrolling inventory list with an expanded view, category multi-select, and filtered product jump control.
+- Restored mobile-menu opening/closing animation with reduced-motion support; mobile menu spacing reduced from 328 px to approximately 229 px.
+- Footer Explore links arranged in two columns: Current Stock / Fireplaces / Doors, and Windows / Other / Sell to Us. Footer spacing condensed on phones.
+- Smaller mobile catalogue category controls and a smaller two-column What We Buy list.
+- WhatsApp CTA uses flexible alignment and a growing minimum height so its label stays inside the button at narrow widths.
+- Original darker gold and semibold styling restored for Explore / Visit Us; product price restored to gold. Logo hover/focus turns gold.
+- Footer phone and email are actionable `tel:` / `mailto:` links.
+
+Validation: lint, seven regression tests, and production build pass. Browser checks confirm combined-category filtering, product jump and focus, independent list scrolling, expand/collapse, two-column layouts, CTA containment, and contact hrefs. Twenty-four responsive checks across the six affected page types at 320/375/768/1440 px pass. No product or business data was changed for these refinements.

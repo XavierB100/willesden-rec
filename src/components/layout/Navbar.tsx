@@ -43,9 +43,9 @@ export function Navbar({ whatsappNumber }: { whatsappNumber: string }) {
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="flex min-w-0 flex-col"
+            className="group flex min-w-0 flex-col"
           >
-            <span className="text-xl sm:text-2xl font-serif font-bold text-vintage-charcoal tracking-tight">
+            <span className="text-xl sm:text-2xl font-serif font-bold text-vintage-charcoal group-hover:text-vintage-gold group-focus-visible:text-vintage-gold transition-colors tracking-tight">
               Willesden Reclamation
             </span>
             <span className="text-[10px] font-sans text-forest-green tracking-widest uppercase">
@@ -88,32 +88,36 @@ export function Navbar({ whatsappNumber }: { whatsappNumber: string }) {
       </div>
       <div
         id="mobile-navigation"
-        hidden={!isOpen}
-        className="lg:hidden bg-vintage-cream border-t border-vintage-charcoal/10 max-h-[calc(100dvh-5rem)] overflow-y-auto"
+        data-open={isOpen}
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+        className="mobile-navigation lg:hidden bg-vintage-cream"
       >
-        <div className="flex flex-col p-4 gap-2">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={pathname === link.href ? "page" : undefined}
-              className="text-lg font-serif text-vintage-charcoal py-3"
+        <div className="min-h-0 overflow-hidden">
+          <div className="flex flex-col px-4 py-2 gap-0 border-t border-vintage-charcoal/10 max-h-[calc(100dvh-5rem)] overflow-y-auto">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={pathname === link.href ? "page" : undefined}
+                className="text-base font-serif text-vintage-charcoal py-2 min-h-10"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <ButtonLink
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="md"
+              className="w-full mt-2"
               onClick={() => setIsOpen(false)}
             >
-              {link.label}
-            </Link>
-          ))}
-          <ButtonLink
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            size="lg"
-            className="w-full"
-            onClick={() => setIsOpen(false)}
-          >
-            <MessageCircle className="w-5 h-5 mr-2" />
-            Chat to Buy
-          </ButtonLink>
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Chat to Buy
+            </ButtonLink>
+          </div>
         </div>
       </div>
     </nav>
