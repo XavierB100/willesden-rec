@@ -110,11 +110,11 @@ export default async function StockPage({ searchParams }: StockPageProps) {
             ))}
           </div>
 
-          <form action="/stock" role="search" className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3 sm:grid-cols-[minmax(0,1fr)_14rem_auto]">
+          <form action="/stock" role="search" className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-end gap-2 sm:gap-3 sm:grid-cols-[minmax(0,1fr)_14rem_auto]">
             {selectedCategory && (
               <input type="hidden" name="category" value={selectedCategory} />
             )}
-            <label className="col-span-2 sm:col-span-1 flex min-w-0 flex-col gap-2 text-sm font-bold text-vintage-charcoal">
+            <label className="flex min-w-0 flex-col gap-2 text-xs sm:text-sm font-bold text-vintage-charcoal">
               Search stock
               <input
                 key={selectedQuery}
@@ -122,16 +122,16 @@ export default async function StockPage({ searchParams }: StockPageProps) {
                 name="q"
                 defaultValue={selectedQuery}
                 maxLength={200}
-                placeholder="Try a door, fireplace or material"
-                className="h-11 w-full min-w-0 rounded-sm border-2 border-vintage-charcoal bg-white px-3 text-base font-medium text-vintage-charcoal focus:outline-none focus:border-forest-green"
+                placeholder="Search stock"
+                className="h-11 w-full min-w-0 rounded-sm border-2 border-vintage-charcoal bg-white px-2 sm:px-3 text-base font-medium text-vintage-charcoal focus:outline-none focus:border-forest-green"
               />
             </label>
-            <label className="flex min-w-0 flex-col gap-2 text-sm font-bold text-vintage-charcoal">
+            <label className="flex min-w-0 flex-col gap-2 text-xs sm:text-sm font-bold text-vintage-charcoal">
               Sort by
               <select
                 name="sort"
                 defaultValue={selectedSort}
-                className="h-11 w-full min-w-0 rounded-sm border-2 border-vintage-charcoal bg-white px-3 text-base font-medium text-vintage-charcoal focus:outline-none focus:border-forest-green"
+                className="h-11 w-full min-w-0 rounded-sm border-2 border-vintage-charcoal bg-white px-2 sm:px-3 text-base font-medium text-vintage-charcoal focus:outline-none focus:border-forest-green"
               >
                 {STOCK_SORT_OPTIONS.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -143,7 +143,7 @@ export default async function StockPage({ searchParams }: StockPageProps) {
             <Button
               type="submit"
               variant="outline"
-              className="h-11 shrink-0 px-4 text-sm"
+              className="h-11 shrink-0 px-2 text-xs sm:px-4 sm:text-sm"
             >
               Search
             </Button>
