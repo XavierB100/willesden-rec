@@ -1,6 +1,8 @@
 # Willesden Reclamation
 
-Production-ready Next.js site for Willesden Reclamation, backed by Supabase inventory, admin login, product image uploads, WhatsApp enquiries, Vercel Analytics, Vercel Speed Insights, and Vercel hosting.
+Next.js site for Willesden Reclamation, maintained by itslizzyy, with Supabase inventory, admin login, product image uploads, WhatsApp enquiries, and Netlify hosting.
+
+Current hosting details, verification results, and maintenance steps are in [notes/hosting.md](notes/hosting.md). The Netlify site is a private staging environment until business content and domain cutover are approved.
 
 ## Local Development
 
@@ -35,7 +37,7 @@ For the contact page map, use Google Maps `Share > Embed a map > Copy HTML`. The
 ## Supabase Setup
 
 1. Create a Supabase project.
-2. Run `supabase/migrations/001_initial_schema.sql` in the SQL editor or through the Supabase CLI.
+2. Run the SQL files in `supabase/migrations/` in filename order, including the production access migration. The initial migration includes example stock that must be reviewed before a public launch.
 3. Create an auth user for the owner in Supabase Auth.
 4. Set `ADMIN_EMAIL` to that owner email.
 5. Copy the project URL, anon key, and service role key into `.env.local` and Vercel environment variables.
@@ -52,7 +54,7 @@ ADMIN_EMAIL=
 NEXT_PUBLIC_SITE_URL=
 ```
 
-The `product-images` storage bucket is public-read. Product writes, settings updates, and uploads go through protected Next.js route handlers that verify the logged-in Supabase user email matches `ADMIN_EMAIL`.
+The `product-images` storage bucket is public-read. Product writes, settings updates, and uploads go through protected Next.js route handlers that verify the logged-in Supabase user email matches `ADMIN_EMAIL`. Public database roles have SELECT access only. Uploads accept JPEG, PNG, WebP, AVIF, and GIF images up to 4 MB each.
 
 `NEXT_PUBLIC_SITE_URL` is used in prefilled WhatsApp enquiry messages. Use `https://willesdenreclamation.co.uk` for production, or omit it locally to use the same production link in test messages.
 
@@ -60,13 +62,15 @@ If the service role key is ever committed, screenshotted publicly, or pasted int
 
 ## Deployment
 
-Deploy to Vercel as a standard Next.js app. This project intentionally does not use `output: "export"` because the admin dashboard, uploads, and server-side Supabase writes require server routes.
+Netlify reads `netlify.toml`: Node.js 22, build command `npm run build`, and publish directory `.next`. Its Next.js adapter provides the server routes. Set all five application variables in Netlify for production and deploy previews, with values available to both builds and functions. Keep the privileged Supabase key server-side and out of Git.
 
-Vercel Analytics and Speed Insights are enabled through `@vercel/analytics` and `@vercel/speed-insights`. After deploying, visit a few pages on the live site and Vercel's Analytics and Speed Insights tabs should begin showing data.
+The application needs a full Next.js deployment because the admin dashboard, uploads, and server-side writes require server routes. The old `docs/` static export is an archived build and is not the Netlify publish directory.
 
-After deployment, point `willesdenreclamation.co.uk` at the Vercel project from the domain registrar/DNS provider.
+Vercel Analytics and Speed Insights run only when `VERCEL=1`. They are not enabled on Netlify.
 
-When the real domain is connected, update `NEXT_PUBLIC_SITE_URL` in Vercel from the preview domain to `https://willesdenreclamation.co.uk` and redeploy so WhatsApp enquiry messages include the final public URL.
+After the staging environment passes verification and a domain cutover is approved, connect `willesdenreclamation.co.uk` to the Netlify project from the domain registrar/DNS provider.
+
+When the real domain is connected, update `NEXT_PUBLIC_SITE_URL` in Netlify and the Supabase Auth site/redirect URLs to the production address, then redeploy so WhatsApp enquiry messages include the final public URL.
 
 The app ships with `robots.txt`, `sitemap.xml`, a web app manifest, LocalBusiness structured data, a noindex admin route, and WR favicon/app icons for search engines and mobile home-screen previews. After the domain switch, verify the site in Google Search Console and submit `https://willesdenreclamation.co.uk/sitemap.xml` to encourage Google to recrawl the new pages.
 

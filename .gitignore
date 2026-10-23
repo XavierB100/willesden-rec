@@ -37,6 +37,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# provider CLI state
+.netlify/
+supabase/.temp/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
