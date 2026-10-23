@@ -38,7 +38,7 @@ SEO canonicals, social metadata, structured data, and sitemap URLs use the final
 
 PR deploy previews can show a labelled sample catalogue with 36 fictional listings in every category, predominantly portrait photos, some landscape photos, and multi-photo examples. Samples are isolated from the live inventory and have no enquiry action. See [sample catalogue and photo credits](notes/review-stock.md) for the preview switch and sources.
 
-Stock search matches titles, categories, descriptions and dimensions, combines with the category/sort controls, and can be cleared without losing the selected category. Stock/category pages paginate after six rows at each responsive size. Latest Arrivals stays limited to five items.
+Stock search filters titles, categories, descriptions and dimensions immediately as you type. The Apply button commits only the selected sort order; Enter in the search field confirms the current search without applying a pending sort. Searches stay in the URL and can be cleared without losing the selected category/applied sort. Stock/category pages paginate after six rows at each responsive size. Latest Arrivals stays limited to five items.
 
 ## Owner management
 

@@ -55,7 +55,7 @@ export default async function Home() {
       </section>
 
       <section className="py-20 bg-vintage-cream">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 md:space-y-12">
           <div className="flex items-end justify-between border-b border-vintage-charcoal/10 pb-6">
             <div className="space-y-2">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-vintage-charcoal">
@@ -90,7 +90,7 @@ export default async function Home() {
             </div>
           )}
 
-          <div className="md:hidden flex justify-center pt-8">
+          <div className="md:hidden flex justify-center">
             <ButtonLink href="/stock" variant="outline" className="w-full">
               View All Stock
             </ButtonLink>
