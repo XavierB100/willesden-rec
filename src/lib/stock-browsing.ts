@@ -1,4 +1,8 @@
-import { PRODUCT_CATEGORIES, type Product, type ProductCategory } from "./catalogue";
+import {
+  PRODUCT_CATEGORIES,
+  type Product,
+  type ProductCategory,
+} from "./catalogue";
 
 export type StockSort = "latest" | "price-asc" | "price-desc";
 
@@ -8,8 +12,13 @@ export const STOCK_SORT_OPTIONS: Array<{ value: StockSort; label: string }> = [
   { value: "price-desc", label: "Price ↓" },
 ];
 
-export function isProductCategory(value?: string | string[]): value is ProductCategory {
-  return typeof value === "string" && PRODUCT_CATEGORIES.includes(value as ProductCategory);
+export function isProductCategory(
+  value?: string | string[],
+): value is ProductCategory {
+  return (
+    typeof value === "string" &&
+    PRODUCT_CATEGORIES.includes(value as ProductCategory)
+  );
 }
 
 export function isStockSort(value?: string | string[]): value is StockSort {
@@ -30,7 +39,11 @@ export function sortProducts(products: Product[], sort: StockSort) {
   });
 }
 
-export function stockHref(category: ProductCategory | undefined, sort: StockSort, search = "") {
+export function stockHref(
+  category: ProductCategory | undefined,
+  sort: StockSort,
+  search = "",
+) {
   const params = new URLSearchParams();
   if (category) params.set("category", category);
   if (sort !== "latest") params.set("sort", sort);

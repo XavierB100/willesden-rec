@@ -1,5 +1,7 @@
 # Changes since the original version and review handover
 
+This records the earlier PR #2 review. For the separate heritage storefront and admin refactor, see [the refactor handover](refactor.md).
+
 Prepared for owner review on **24 October 2026**. Maintainer: **itslizzyy**.
 
 ## Versions being compared

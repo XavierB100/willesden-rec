@@ -9,7 +9,10 @@
     "lint": "eslint",
     "test": "tsx --test tests/*.test.ts",
     "check": "npm run lint && npm test && npm run build",
-    "verify:site": "tsx scripts/verify-site.ts"
+    "verify:site": "tsx scripts/verify-site.ts",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.118.0",
@@ -23,6 +26,7 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -30,6 +34,7 @@
     "axe-core": "4.14.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
+    "prettier": "^3.9.10",
     "tailwindcss": "^4",
     "tsx": "4.23.15",
     "typescript": "^5"

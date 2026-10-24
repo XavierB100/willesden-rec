@@ -40,7 +40,10 @@ export function ButtonLink({
   href,
   ...props
 }: AnchorHTMLAttributes<HTMLAnchorElement> &
-  Pick<ButtonProps, "variant" | "size"> & { href: string; prefetch?: boolean }) {
+  Pick<ButtonProps, "variant" | "size"> & {
+    href: string;
+    prefetch?: boolean;
+  }) {
   return (
     <Link
       href={href}

@@ -1,3 +1,4 @@
+import { PageIntro } from "@/components/storefront/PageIntro";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ui/Button";
@@ -22,18 +23,18 @@ export default async function ContactPage() {
 
   return (
     <div className="min-h-screen bg-vintage-cream">
-      <div className="bg-vintage-moss text-vintage-cream py-16 px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-          Visit Our Yard
-        </h1>
-        <p className="text-vintage-cream/80 max-w-2xl mx-auto font-sans">
-          Come and see the stock in person, or message us first if you are after
-          something specific.
+      <PageIntro
+        eyebrow="Find us in Willesden"
+        title="Come and have a look."
+        dark
+      >
+        <p>
+          There’s nothing quite like seeing a piece in person. Drop by the yard,
+          or get in touch about something you’ve spotted.
         </p>
-      </div>
-
+      </PageIntro>
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-10">
+        <div className="contact-card space-y-10">
           <div className="space-y-6">
             <h2 className="text-2xl font-serif font-bold text-vintage-charcoal">
               Contact Details
@@ -70,7 +71,7 @@ export default async function ContactPage() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-[#25D366] hover:bg-[#128C7E] text-vintage-charcoal"
+                className="w-full sm:w-auto bg-forest-green hover:bg-vintage-moss text-white"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 WhatsApp Us
@@ -105,7 +106,7 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <div className="h-[420px] bg-vintage-charcoal/5 rounded-md overflow-hidden relative border border-vintage-charcoal/10">
+        <div className="h-[420px] md:h-full min-h-[420px] bg-vintage-charcoal/5 rounded-md overflow-hidden relative border border-vintage-charcoal/10">
           <iframe
             title="Map to Willesden Reclamation"
             src={settings.mapEmbedUrl}

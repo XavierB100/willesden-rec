@@ -10,7 +10,16 @@ export const CATALOGUE_BREAKPOINTS = [
 export function cataloguePage(total: number, columns: number, anchor = 0) {
   const perPage = CATALOGUE_ROWS * columns;
   const pageCount = Math.max(1, Math.ceil(total / perPage));
-  const page = Math.min(pageCount, Math.max(1, Math.floor(anchor / perPage) + 1));
+  const page = Math.min(
+    pageCount,
+    Math.max(1, Math.floor(anchor / perPage) + 1),
+  );
   const start = (page - 1) * perPage;
-  return { page, pageCount, perPage, start, end: Math.min(total, start + perPage) };
+  return {
+    page,
+    pageCount,
+    perPage,
+    start,
+    end: Math.min(total, start + perPage),
+  };
 }

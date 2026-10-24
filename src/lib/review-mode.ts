@@ -1,4 +1,7 @@
-export function reviewStockEnabled(context: string | undefined, enabled: string | undefined) {
+export function reviewStockEnabled(
+  context: string | undefined,
+  enabled: string | undefined,
+) {
   return context === "deploy-preview" && enabled === "true";
 }
 

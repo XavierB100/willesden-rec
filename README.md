@@ -1,6 +1,6 @@
 # Willesden Reclamation
 
-Version **1.0.0 (v1)** — the approved deliverable baseline. The `v1` Git tag identifies the merged baseline before future design changes.
+The `v1` Git tag identifies the approved 1.0.0 baseline. This branch is the **heritage storefront and owner-workspace refactor**; see [design, architecture and verification](notes/refactor.md). It is an independent review proposal and has not been published or merged.
 
 Maintained by **itslizzyy**. Next.js and React website with Supabase inventory, owner-only management, photo uploads, and WhatsApp enquiries. Hosted on Netlify.
 
@@ -17,7 +17,7 @@ npm run check
 npm start
 ```
 
-`npm run check` runs ESLint, regression tests, and the production build. A GitHub Actions template is supplied in `notes/ci-checks.yml`; activating it requires a GitHub credential with workflow permission. `npm run verify:site` checks a running local production server; see the verification instructions below.
+`npm run check` runs ESLint, regression tests, and the production build. `npm run format` formats source files; `npm run format:check` verifies them. After a build, `npm run test:e2e` starts or reuses a local production server on port 3100 (use `VERIFY_URL` for an already-running alternative). Install Chromium once with `npx playwright install chromium`. A GitHub Actions template is supplied in `notes/ci-checks.yml`; activating it requires a GitHub credential with workflow permission. `npm run verify:site` checks a running local production server; see the verification instructions below.
 
 ## Configuration
 
@@ -36,26 +36,24 @@ SEO canonicals, social metadata, structured data, and sitemap URLs use the final
 
 ## Catalogue review
 
-The [complete change history and PR review handover](notes/change-history.md) compares the original app, approved v1 and PR #2, and records the pending production decision.
+The [earlier change history](notes/change-history.md) compares the original app, v1 and PR #2. The [current refactor handover](notes/refactor.md) documents this separate proposal, its architecture, tests and publication blocker.
 
 PR deploy previews can show a labelled sample catalogue with 36 fictional listings in every category, predominantly portrait photos, some landscape photos, and multi-photo examples. Samples are isolated from the live inventory and have no enquiry action. See [sample catalogue and photo credits](notes/review-stock.md) for the preview switch and sources.
 
 Stock search filters titles, categories, descriptions and dimensions immediately as you type. The Apply button commits only the selected sort order; Enter in the search field confirms the current search without applying a pending sort. Searches stay in the URL and can be cleared without losing the selected category/applied sort. Stock/category pages paginate after six rows at each responsive size. Latest Arrivals keeps five items on phones; wider layouts show up to two rows (six, eight or ten items as the grid gains columns).
 
-## Owner management
+## Owner workspace
 
 Open `/admin` and sign in as the configured Supabase Auth owner. Public signups are disabled.
 
-- Use the section links to reach Current Products, Add Product, or Site Details. Search inventory by title, category, or status, combine categories in the multi-select, or jump straight to a matching product. The compact list shows roughly five items and scrolls independently; Show all expands it.
-- Add a title, category, description, dimensions, and price. Blank price means POA; decimal prices use up to two places.
-- Upload up to 20 JPEG, PNG, WebP, AVIF, or GIF images. Phone photos are reduced to a maximum 2000 px edge before upload when needed. Originals may be up to 20 MB; final files must be 4 MB or smaller. GIFs must already meet the 4 MB limit. HEIC is not supported: export JPEG first.
-- Use Up/Down to choose photo order; the first photo appears on catalogue cards. Publish Item saves the product.
-- Edit loads and focuses the product form. Keep a published slug unchanged to preserve its URL. Change Status to Sold and save to retain the listing while disabling its enquiry button.
-- Delete requires confirmation and removes the listing. Photos are retained in Storage to avoid deleting files shared by another listing; review orphaned files during maintenance.
-- Site Details controls contact details, opening hours, the footer, and the navigation WhatsApp destination. Use Google Maps Share → Embed a map and paste the iframe or its HTTPS URL.
-- Opening hours use one `Label: Hours` pair per line. Save Site Details separately from product edits.
+- **Inventory:** filter all, available or sold stock, search titles/categories/status, and combine category checkboxes. Lists paginate at 12 items. Edit opens the focused product editor; the check/restore action marks a piece sold or available. View opens the saved public page in another tab.
+- **Product editor:** enter title, category, dimensions, description and optional price. Blank price means POA; decimal prices preserve pence. The preview reflects unsaved details. Keep a published listing address unchanged to preserve its URL.
+- **Photos:** choose files or drop them onto the upload area. Per-file progress appears during upload. Use arrows or Make cover to set the order; the first photo is the catalogue cover. Up to 20 JPEG, PNG, WebP, AVIF or GIF files are supported. Phone photos up to 20 MB are reduced to a maximum 2000 px edge where needed, and final uploads must be at most 4 MB. GIFs must already meet that limit. Export HEIC to JPEG first.
+- **Save:** Publish product creates a listing; Save changes updates one and keeps the editor open. Failures retain the draft. Uploaded images are only attached to the public listing when the product is saved.
+- **Sold/delete:** sold pieces retain their URL and no longer accept purchase enquiries. Delete is in the editor, requires confirmation and permanently removes the listing. Storage photos remain for manual orphan review, avoiding deletion of shared files.
+- **Yard details:** edit business contact/location information and opening hours as individual rows. Add a row for days with different hours. Paste Google Maps’ embed URL or iframe code to change the map. Save yard details separately from the product.
 
-Edits are not saved until submitted. Switching products or leaving via site links prompts when a draft is unsaved; browser refresh/close uses the browser's warning. Keep a separate backup of live inventory and photos.
+Drafts survive switching workspace sections. Selecting another product, starting a new one, cancelling changes, signing out or leaving through same-tab site links prompts before discarding unsaved work. Refresh/close uses the browser warning. Drafts are in memory, not persistent backups: save before closing. Keep independent backups of live inventory and photos.
 
 ## Database setup
 

@@ -1,3 +1,4 @@
+import "./admin.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,5 +14,9 @@ export default function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <main id="main-content" tabIndex={-1}>
+      {children}
+    </main>
+  );
 }

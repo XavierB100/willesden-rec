@@ -1,6 +1,7 @@
 "use client";
 
 import { CARD_IMAGE_SIZES, ProductPhoto } from "./ProductPhoto";
+import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -41,13 +42,18 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   }
 
   return (
-    <div className="group flex min-w-0 flex-col bg-white border border-vintage-gold/50 transition-shadow duration-300 hover:shadow-lg rounded-sm overflow-hidden">
+    <div className="product-card group flex min-w-0 flex-col bg-white border border-vintage-gold/50 transition-shadow duration-300 hover:shadow-lg rounded-sm overflow-hidden">
       <div className="relative aspect-[3/4] w-full shrink-0 bg-vintage-cream overflow-hidden">
         {product.status === "sold" && (
           <div className="absolute bottom-3 right-3 z-20 bg-vintage-charcoal text-vintage-cream text-xs font-bold px-3 py-1 uppercase tracking-widest">
             Sold
           </div>
         )}
+        <Link
+          href={href}
+          aria-label={`View ${product.title}`}
+          className="absolute inset-0 z-10"
+        />
         <ProductPhoto
           images={images}
           activeIndex={activeIndex}
@@ -90,7 +96,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           {product.sample && " · Sample"}
         </div>
         <h3 className="font-serif text-base md:text-lg leading-snug text-vintage-charcoal line-clamp-2 min-h-[2.75rem] md:min-h-[3.125rem]">
-          {product.title}
+          <Link href={href}>{product.title}</Link>
         </h3>
 
         <div className="mt-auto pt-1.5 grid grid-cols-[auto_minmax(0,1fr)] gap-1 items-center border-t border-vintage-charcoal/5">

@@ -1,3 +1,4 @@
+import { PageIntro } from "@/components/storefront/PageIntro";
 import { getStorefrontProducts } from "@/lib/storefront-data";
 import { pageMetadata } from "@/lib/seo";
 import { isProductCategory, isStockSort } from "@/lib/stock-browsing";
@@ -11,7 +12,11 @@ export const metadata: Metadata = pageMetadata(
 );
 
 interface StockPageProps {
-  searchParams?: Promise<{ category?: string | string[]; sort?: string | string[]; q?: string | string[] }>;
+  searchParams?: Promise<{
+    category?: string | string[];
+    sort?: string | string[];
+    q?: string | string[];
+  }>;
 }
 
 export default async function StockPage({ searchParams }: StockPageProps) {
@@ -20,25 +25,22 @@ export default async function StockPage({ searchParams }: StockPageProps) {
     ? params?.category
     : undefined;
   const selectedSort = isStockSort(params?.sort) ? params.sort : "latest";
-  const selectedQuery = typeof params?.q === "string" ? params.q.trim().slice(0, 200) : "";
+  const selectedQuery =
+    typeof params?.q === "string" ? params.q.trim().slice(0, 200) : "";
   const filteredProducts = await getStorefrontProducts({
     category: selectedCategory,
     includeSold: true,
   });
 
   return (
-    <div className="min-h-screen bg-vintage-cream py-12 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto space-y-12">
-        <div className="space-y-4 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-vintage-charcoal">
-            Current Inventory
-          </h1>
-          <p className="text-vintage-charcoal/80 max-w-2xl font-sans">
-            Browse our latest collection of reclaimed architectural antiques
-            using the filters below.
-          </p>
-        </div>
-
+    <>
+      <PageIntro eyebrow="The collection" title="Pieces with a past.">
+        <p>
+          Explore the latest finds from our Willesden yard. Find something you
+          love, then get in touch to make it yours.
+        </p>
+      </PageIntro>
+      <div className="site-container section-space">
         <StockBrowser
           key={`${selectedCategory || "all"}-${selectedSort}-${selectedQuery}`}
           products={filteredProducts}
@@ -47,6 +49,6 @@ export default async function StockPage({ searchParams }: StockPageProps) {
           initialSort={selectedSort}
         />
       </div>
-    </div>
+    </>
   );
 }

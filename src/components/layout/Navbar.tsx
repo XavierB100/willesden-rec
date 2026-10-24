@@ -18,6 +18,11 @@ export function Navbar({ whatsappNumber }: { whatsappNumber: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  const isActive = (href: string) =>
+    href === "/stock"
+      ? ["/stock", "/fireplaces", "/doors", "/windows"].includes(pathname) ||
+        pathname.startsWith("/products/")
+      : pathname === href;
   const whatsappUrl = buildWhatsAppUrl(
     whatsappNumber,
     "Hi, I'd like to ask about Willesden Reclamation stock.",
@@ -49,7 +54,7 @@ export function Navbar({ whatsappNumber }: { whatsappNumber: string }) {
               Willesden Reclamation
             </span>
             <span className="text-[10px] font-sans text-forest-green tracking-widest uppercase">
-              Est. 2018
+              Architectural salvage · London
             </span>
           </Link>
           <div className="hidden lg:flex items-center space-x-8">
@@ -57,8 +62,8 @@ export function Navbar({ whatsappNumber }: { whatsappNumber: string }) {
               <Link
                 key={link.href}
                 href={link.href}
-                aria-current={pathname === link.href ? "page" : undefined}
-                className="text-vintage-charcoal/80 hover:text-forest-green font-sans text-sm font-medium py-3"
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className="text-vintage-charcoal/80 hover:text-forest-green font-sans text-sm font-medium py-3 aria-[current=page]:border-b aria-[current=page]:border-forest-green aria-[current=page]:text-forest-green"
               >
                 {link.label}
               </Link>
@@ -70,7 +75,7 @@ export function Navbar({ whatsappNumber }: { whatsappNumber: string }) {
               size="sm"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
-              Chat to Buy
+              Enquire with the yard
             </ButtonLink>
           </div>
           <button
@@ -99,7 +104,7 @@ export function Navbar({ whatsappNumber }: { whatsappNumber: string }) {
               <Link
                 key={link.href}
                 href={link.href}
-                aria-current={pathname === link.href ? "page" : undefined}
+                aria-current={isActive(link.href) ? "page" : undefined}
                 className="text-base font-serif text-vintage-charcoal py-2 min-h-10"
                 onClick={() => setIsOpen(false)}
               >
@@ -115,7 +120,7 @@ export function Navbar({ whatsappNumber }: { whatsappNumber: string }) {
               onClick={() => setIsOpen(false)}
             >
               <MessageCircle className="w-5 h-5 mr-2" />
-              Chat to Buy
+              Enquire with the yard
             </ButtonLink>
           </div>
         </div>

@@ -3,12 +3,8 @@ import { SITE_URL, pageMetadata, jsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { ProductGallery } from "@/components/products/ProductGallery";
-import {
-  buildWhatsAppUrl,
-  formatPrice,
-  getSiteSettings,
-} from "@/lib/data";
-import { ArrowLeft, MessageCircle, Ruler, Tag } from "lucide-react";
+import { buildWhatsAppUrl, formatPrice, getSiteSettings } from "@/lib/data";
+import { ArrowLeft, MessageCircle, Ruler, Tag, MapPin } from "lucide-react";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 
@@ -63,36 +59,38 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-vintage-cream py-12 px-4 md:px-8">
-      {!product.sample && <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: jsonLd({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: product.title,
-            description: product.description,
-            image: product.imageUrls.length ? product.imageUrls : undefined,
-            sku: product.id,
-            category: product.category,
-            url: `${SITE_URL}/products/${product.slug || product.id}`,
-            ...(product.price !== null
-              ? {
-                  offers: {
-                    "@type": "Offer",
-                    price: product.price,
-                    priceCurrency: "GBP",
-                    availability:
-                      product.status === "sold"
-                        ? "https://schema.org/SoldOut"
-                        : "https://schema.org/InStock",
-                    itemCondition: "https://schema.org/UsedCondition",
-                    url: `${SITE_URL}/products/${product.slug || product.id}`,
-                  },
-                }
-              : {}),
-          }),
-        }}
-      />}
+      {!product.sample && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLd({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              name: product.title,
+              description: product.description,
+              image: product.imageUrls.length ? product.imageUrls : undefined,
+              sku: product.id,
+              category: product.category,
+              url: `${SITE_URL}/products/${product.slug || product.id}`,
+              ...(product.price !== null
+                ? {
+                    offers: {
+                      "@type": "Offer",
+                      price: product.price,
+                      priceCurrency: "GBP",
+                      availability:
+                        product.status === "sold"
+                          ? "https://schema.org/SoldOut"
+                          : "https://schema.org/InStock",
+                      itemCondition: "https://schema.org/UsedCondition",
+                      url: `${SITE_URL}/products/${product.slug || product.id}`,
+                    },
+                  }
+                : {}),
+            }),
+          }}
+        />
+      )}
       <div className="max-w-6xl mx-auto space-y-8">
         <Link
           href="/stock"
@@ -109,15 +107,16 @@ export default async function ProductPage({ params }: PageProps) {
             sold={product.status === "sold"}
           />
 
-          <div className="flex flex-col space-y-8 py-4">
+          <div className="flex flex-col space-y-6 py-4 md:sticky md:top-24 self-start">
             <div className="space-y-4">
               <span className="inline-block text-forest-green text-sm font-bold uppercase tracking-wider">
-                {product.category}{product.sample && " · Sample"}
+                {product.category}
+                {product.sample && " · Sample"}
               </span>
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-vintage-charcoal leading-tight">
                 {product.title}
               </h1>
-              <p className="text-3xl font-serif text-vintage-gold font-semibold">
+              <p className="text-3xl font-serif text-forest-green font-semibold">
                 {formatPrice(product.price)}
               </p>
             </div>
@@ -140,10 +139,24 @@ export default async function ProductPage({ params }: PageProps) {
               )}
             </div>
 
-            <div className="pt-8 mt-auto">
+            <div className="contact-card !p-5 space-y-2">
+              <p className="flex items-center gap-2 font-semibold text-sm">
+                <MapPin size={17} /> Find it at the yard
+              </p>
+              <p className="text-sm text-vintage-charcoal/75">
+                Ask about condition, measurements and availability before making
+                a journey.
+              </p>
+              <Link href="/contact" className="text-link">
+                Plan your visit
+              </Link>
+            </div>
+            <div className="pt-4 mt-auto">
               {product.sample ? (
                 <div className="space-y-3">
-                  <p className="font-semibold">Sample listing — unavailable to purchase</p>
+                  <p className="font-semibold">
+                    Sample listing — unavailable to purchase
+                  </p>
                 </div>
               ) : product.status === "available" ? (
                 <div>
@@ -152,7 +165,7 @@ export default async function ProductPage({ params }: PageProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     size="lg"
-                    className="w-full md:w-auto h-16 text-lg space-x-3 bg-[#25D366] hover:bg-[#128C7E] text-vintage-charcoal shadow-lg hover:shadow-xl"
+                    className="w-full md:w-auto h-16 text-lg space-x-3 bg-forest-green hover:bg-vintage-moss text-white"
                   >
                     <MessageCircle className="w-6 h-6" />
                     <span>Enquire on WhatsApp</span>

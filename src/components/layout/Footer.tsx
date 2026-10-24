@@ -5,7 +5,7 @@ export async function Footer() {
   const settings = await getSiteSettings();
 
   return (
-    <footer className="bg-forest-green text-vintage-cream pt-10 md:pt-16 pb-6 md:pb-8">
+    <footer className="site-footer bg-vintage-moss text-vintage-cream pt-10 md:pt-16 pb-6 md:pb-8">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-12 text-center md:text-left">
           <div className="space-y-4">
@@ -38,7 +38,7 @@ export async function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-vintage-cream/80 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
+                  className="inline-flex items-center justify-center min-h-11 text-vintage-cream/80 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
                 >
                   {link.label}
                 </Link>
