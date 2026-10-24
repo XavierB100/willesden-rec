@@ -63,7 +63,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   email: "info@willesdenreclamation.co.uk",
   addressLines: ["71 High Road Ellis Cl", "London", "NW10 2SU"],
   mapEmbedUrl:
-    "https://www.google.com/maps?q=Willesden%20Reclamation%2C%2071%20High%20Road%2C%20London%20NW10%202SU&output=embed",
+    "https://www.google.com/maps?q=51.5470500%2C-0.2275646&z=18&output=embed",
   openingHours: [
     { label: "Monday - Friday", value: "8:00 AM - 5:00 PM" },
     { label: "Saturday", value: "10:00 AM - 4:00 PM" },

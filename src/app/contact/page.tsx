@@ -124,8 +124,8 @@ export default async function ContactPage() {
             id="yard-entrance-note"
             className="text-sm font-sans text-vintage-charcoal/80 leading-relaxed"
           >
-            Google Maps shows {settings.businessName} on High Road. Our yard
-            entrance is just down Ellis Close.
+            {settings.businessName} — our entrance is just down Ellis Close, at
+            the pin shown on the map.
           </p>
           <a
             href="https://maps.app.goo.gl/RMgUuTvSoLVCM95Q7"

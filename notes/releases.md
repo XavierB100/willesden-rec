@@ -4,7 +4,7 @@
 
 - Show the business name and `71 High Road Ellis Cl / London / NW10 2SU` in the footer, using the same owner-managed settings as the contact page. Update fallback details and contact metadata to match.
 - Read site details at request time, invalidate the shared layout after a successful owner save, and refresh the admin layout so edits appear without a rebuild. React request memoization still avoids duplicate settings reads during one render.
-- Keep Google's named Willesden Reclamation embed. The owner's [entrance pin](https://maps.app.goo.gl/RMgUuTvSoLVCM95Q7) resolves to `51.5470500, -0.2275646` and Google labels it as coordinates, so use the requested fallback: explain that the entrance is just down Ellis Close and provide a separate, clearly named entrance link. This does not modify Google's business listing.
+- Embed the owner's [exact entrance pin](https://maps.app.goo.gl/RMgUuTvSoLVCM95Q7), `51.5470500, -0.2275646`, with a short note naming Willesden Reclamation and explaining that the entrance is just down Ellis Close. Google labels this dropped pin with coordinates; the owner confirmed that presentation. Keep a separate entrance link for opening Maps. This does not modify Google's business listing.
 - Existing saved address lines already contain Ellis Close; preserve all saved site details and catalogue records.
 
 ## 1.1.0 - owner-approved stock/photo release (24 October 2026)
