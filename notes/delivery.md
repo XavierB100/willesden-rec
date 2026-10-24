@@ -1,6 +1,6 @@
 # Deliverable base and domain handover
 
-Owner and maintainer: **itslizzyy**. Prepared 23 October 2026.
+GitHub maintainer: **XavierB100**. Historical delivery record prepared 23 October 2026; current release notes are in [releases.md](releases.md).
 
 ## Delivery scope
 
@@ -32,7 +32,7 @@ At the agreed launch:
 4. Preserve all mail-related MX/TXT/CNAME records, including SPF/DKIM/DMARC/autodiscover, and other unrelated subdomains. Change only the website records required by Netlify. Save the original records for rollback.
 5. Confirm both hostnames resolve, Netlify issues a valid TLS certificate, and apex redirects to HTTPS www. Check for conflicting AAAA records and certificate-authority restrictions if TLS fails.
 6. Set production `NEXT_PUBLIC_SITE_URL=https://www.willesdenreclamation.co.uk`. Set Supabase Auth site URL to that origin and allow the exact `https://www.willesdenreclamation.co.uk/admin` redirect. Retain only intentional staging/local redirects. Deploy-preview enquiry URLs may stay on staging.
-7. After content and public launch approval, set `SITE_INDEXABLE=true` **in production only**, redeploy, and remove Netlify private access. Preview builds remain noindex even if the variable is inherited. Do not enable indexing while the sample stock is present.
+7. After content and public launch approval, set `SITE_INDEXABLE=true` **in production only**, and redeploy. Netlify review URLs were made public for owner-approved sharing on 23 October; indexing remains disabled. Preview builds remain noindex even if the variable is inherited. Do not enable indexing while the sample stock is present.
 8. Recheck canonical/OG/structured-data URLs, robots (allow public, disallow admin/API), sitemap, legacy redirects, admin login and CRUD, uploaded photos, WhatsApp links, phone/email links, and map. Check apex/www/HTTP redirect behaviour and verify the Netlify subdomain is not an independently indexable duplicate.
 9. Verify the domain in Google Search Console, submit `https://www.willesdenreclamation.co.uk/sitemap.xml`, and review indexing/404s. Retain old redirects long term. Rankings and real-user Core Web Vitals require post-launch observation; technical checks cannot guarantee rankings.
 
@@ -52,7 +52,7 @@ GitHub rejected the initial push of an active Actions workflow because the conne
 
 ## Verification evidence
 
-Review: [PR #1](https://github.com/itslizzyy/willesden-rec/pull/1) · [private Netlify preview](https://deploy-preview-1--adorable-sunshine-a6e527.netlify.app).
+Review: [PR #1](https://github.com/itslizzyy/willesden-rec/pull/1) · [Netlify preview](https://deploy-preview-1--adorable-sunshine-a6e527.netlify.app).
 
 Verified application commit: `ac177d5800bc948cf6be03290665ad84e8d088d9`; Netlify deploy `6adb81341ec098d76778399e`. Subsequent documentation-only commits may use `[skip netlify]`; the application is identical.
 
@@ -93,3 +93,12 @@ Final review adjustments: Explore is centered above both footer link columns; st
 The approved merged baseline is version **1.0.0**, identified by the annotated Git tag `v1` on the PR merge commit. Future design work starts from this baseline.
 
 The previous website owner login was restored at the owner's request, retaining the existing Auth user ID. The supplied password passed direct Supabase login verification, the private `ADMIN_EMAIL` setting was updated for Netlify production/deploy-preview and local use, and Keychain was updated. No password is stored in Git or these notes.
+
+## PR #2 review handover
+
+The complete original-to-current comparison, current photo/search/layout behaviour, validation scope and pending owner review are recorded in [change-history.md](change-history.md). The image review was restored as [XavierB100 PR #1](https://github.com/XavierB100/willesden-rec/pull/1) on 24 October 2026 and was subsequently approved for the 1.1.0 release. See [account migration](account-migration.md); earlier PR numbers in this historical delivery record refer to the original itslizzyy repository. Public Netlify sharing does not approve a merge or custom-domain launch.
+
+
+## Approved 1.1.0 release
+
+The owner approved the stock/photo design on 24 October 2026. See [release notes](releases.md) for the cohesive code cleanup and [demo stock](demo-stock.md) for the 14 admin-editable demonstrations and removal before domain launch. This supersedes the earlier unmerged-review state, while preserving v1 and the historical checks.

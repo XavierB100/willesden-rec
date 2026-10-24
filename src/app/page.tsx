@@ -1,8 +1,8 @@
+import { getProducts } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ProductCard } from "@/components/products/ProductCard";
 import { ButtonLink } from "@/components/ui/Button";
-import { getProducts } from "@/lib/data";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata(
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const latestProducts = await getProducts({ includeSold: false, limit: 4 });
+  const latestProducts = await getProducts({ includeSold: false, limit: 10 });
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -55,7 +55,7 @@ export default async function Home() {
       </section>
 
       <section className="py-20 bg-vintage-cream">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6 md:space-y-12">
           <div className="flex items-end justify-between border-b border-vintage-charcoal/10 pb-6">
             <div className="space-y-2">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-vintage-charcoal">
@@ -74,7 +74,7 @@ export default async function Home() {
           </div>
 
           {latestProducts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="product-grid latest-arrivals-grid">
               {latestProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}
@@ -90,7 +90,7 @@ export default async function Home() {
             </div>
           )}
 
-          <div className="md:hidden flex justify-center pt-8">
+          <div className="md:hidden flex justify-center">
             <ButtonLink href="/stock" variant="outline" className="w-full">
               View All Stock
             </ButtonLink>

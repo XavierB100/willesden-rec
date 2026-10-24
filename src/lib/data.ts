@@ -15,6 +15,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 interface ProductRow {
   id: string;
+  is_demo: boolean;
   legacy_id?: string | null;
   title: string;
   slug: string | null;
@@ -50,7 +51,7 @@ function cleanImageUrls(urls: string[] | null | undefined) {
 export function hasSupabaseEnv() {
   return Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   );
 }
 
@@ -88,6 +89,7 @@ export function getSupabaseServiceClient(): SupabaseClient {
 export function mapProduct(row: ProductRow): Product {
   return {
     id: row.id,
+    demo: row.is_demo ?? false,
     legacyId: row.legacy_id,
     title: row.title,
     slug: row.slug || slugify(row.title),
@@ -104,6 +106,7 @@ export function mapProduct(row: ProductRow): Product {
 
 export function mapProductInput(input: ProductInput) {
   return {
+    is_demo: input.demo ?? false,
     title: input.title.trim(),
     slug: slugify(input.slug || input.title),
     description: input.description.trim(),

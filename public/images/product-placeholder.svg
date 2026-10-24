@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-labelledby="title desc">
   <title id="title">Product photo placeholder</title>
   <desc id="desc">A simple placeholder for Willesden Reclamation product photos.</desc>
-  <rect width="1200" height="1500" fill="#f5f5f0"/>
-  <rect x="72" y="72" width="1056" height="1356" fill="none" stroke="#c5a059" stroke-width="10" stroke-dasharray="28 24"/>
+  <rect width="1200" height="1600" fill="#f5f5f0"/>
+  <rect x="72" y="72" width="1056" height="1456" fill="none" stroke="#c5a059" stroke-width="10" stroke-dasharray="28 24"/>
   <g fill="#2c3e50">
-    <path d="M333 846h534v74H333z"/>
-    <path d="M379 579h442v74H379z"/>
-    <path d="M435 690h330v74H435z"/>
+    <path d="M333 801h534v74H333z"/>
+    <path d="M379 534h442v74H379z"/>
+    <path d="M435 645h330v74H435z"/>
   </g>
-  <text x="600" y="1028" text-anchor="middle" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#2c3e50">Willesden</text>
-  <text x="600" y="1118" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" letter-spacing="8" fill="#2f4f4f">RECLAMATION</text>
+  <text x="600" y="983" text-anchor="middle" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#2c3e50">Willesden</text>
+  <text x="600" y="1073" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" letter-spacing="8" fill="#2f4f4f">RECLAMATION</text>
 </svg>

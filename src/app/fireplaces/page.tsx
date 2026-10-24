@@ -1,7 +1,7 @@
+import { getProducts } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
-import { getProducts } from "@/lib/data";
-import { ProductCard } from "@/components/products/ProductCard";
+import { ProductListing } from "@/components/products/ProductListing";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -39,15 +39,7 @@ export default async function FireplacesPage() {
         </p>
 
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {filteredProducts.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                priority={index === 0}
-              />
-            ))}
-          </div>
+          <ProductListing products={filteredProducts} />
         ) : (
           <div className="text-center py-20">
             <p className="text-xl text-vintage-charcoal/80 font-serif">

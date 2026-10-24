@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+import { ProductPhoto } from "./ProductPhoto";
 import { PRODUCT_IMAGE_PLACEHOLDER } from "@/lib/catalogue";
 
 interface ProductGalleryProps {
@@ -20,7 +21,6 @@ export function ProductGallery({
   const images = imageUrls.length ? imageUrls : [PRODUCT_IMAGE_PLACEHOLDER];
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const activeImage = images[activeIndex] || images[0];
   const hasMultipleImages = images.length > 1;
 
   useEffect(() => {
@@ -51,25 +51,24 @@ export function ProductGallery({
 
   return (
     <div className="space-y-4">
-      <div className="relative aspect-[4/3] md:aspect-[5/4] bg-white rounded-sm overflow-hidden border border-vintage-charcoal/5 shadow-sm">
+      <div className="relative aspect-square bg-white rounded-sm overflow-hidden border border-vintage-charcoal/5 shadow-sm">
         {sold && (
-          <div className="absolute top-6 right-6 z-20 bg-vintage-charcoal text-vintage-cream text-sm font-bold px-4 py-2 uppercase tracking-widest shadow-md">
+          <div className="absolute bottom-4 left-4 z-20 bg-vintage-charcoal text-vintage-cream text-sm font-bold px-4 py-2 uppercase tracking-widest shadow-md">
             Sold Out
           </div>
         )}
-        <Image
-          src={activeImage}
-          alt={`Photo ${activeIndex + 1} of ${title}`}
-          fill
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-contain bg-vintage-cream/40"
-          priority
+        <ProductPhoto
+          images={images}
+          activeIndex={activeIndex}
+          title={title}
+          sizes="(min-width: 1344px) 608px, (min-width: 1024px) calc((100vw - 128px) / 2), (min-width: 768px) calc((100vw - 112px) / 2), calc(100vw - 32px)"
+          eager
         />
         <button
           type="button"
           onClick={() => setIsLightboxOpen(true)}
           aria-label="View product photo full screen"
-          className="absolute right-4 top-4 z-30 rounded-full bg-white/95 p-2.5 text-vintage-charcoal shadow-md ring-1 ring-vintage-charcoal/10 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
+          className="absolute right-4 top-4 z-30 rounded-full bg-white/95 p-3 text-vintage-charcoal shadow-md ring-1 ring-vintage-charcoal/10 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
         >
           <Maximize2 className="h-5 w-5" />
         </button>
@@ -91,7 +90,7 @@ export function ProductGallery({
             >
               <ChevronRight className="h-6 w-6" />
             </button>
-            <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full bg-vintage-charcoal/80 px-3 py-1 text-xs font-semibold text-vintage-cream">
+            <div className="absolute top-4 left-4 z-20 rounded-full bg-vintage-charcoal/80 px-3 py-1 text-xs font-semibold text-vintage-cream">
               {activeIndex + 1} / {images.length}
             </div>
           </>
@@ -114,7 +113,7 @@ export function ProductGallery({
                 alt={`Thumbnail ${index + 1} for ${title}`}
                 fill
                 sizes="120px"
-                className="object-cover object-center bg-vintage-cream/40"
+                className="object-contain bg-vintage-cream/40"
               />
             </button>
           ))}
@@ -138,7 +137,7 @@ export function ProductGallery({
               showNext();
             }
           }}
-          className="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none bg-vintage-charcoal/95 px-4 py-6 md:px-8 md:py-8"
+          className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-vintage-charcoal/95 px-3 pb-20 pt-20 md:px-20"
           aria-label={`Full screen photos for ${title}`}
         >
           <button
@@ -151,13 +150,12 @@ export function ProductGallery({
           </button>
 
           <div className="relative mx-auto h-full max-w-7xl">
-            <Image
-              src={activeImage}
-              alt={`Full screen photo ${activeIndex + 1} of ${title}`}
-              fill
-              sizes="100vw"
-              className="object-contain"
-              priority
+            <ProductPhoto
+              images={images}
+              activeIndex={activeIndex}
+              title={title}
+              sizes="(min-width: 1440px) 1280px, (min-width: 768px) calc(100vw - 160px), calc(100vw - 24px)"
+              eager
             />
 
             {hasMultipleImages && (
@@ -178,7 +176,7 @@ export function ProductGallery({
                 >
                   <ChevronRight className="h-7 w-7" />
                 </button>
-                <div className="absolute bottom-4 left-1/2 z-[110] -translate-x-1/2 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-vintage-charcoal shadow-md">
+                <div className="absolute -bottom-14 left-1/2 z-[110] -translate-x-1/2 rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-vintage-charcoal shadow-md">
                   {activeIndex + 1} / {images.length}
                 </div>
               </>

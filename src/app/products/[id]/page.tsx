@@ -5,8 +5,8 @@ import { ProductGallery } from "@/components/products/ProductGallery";
 import {
   buildWhatsAppUrl,
   formatPrice,
-  getProductByIdentifier,
   getSiteSettings,
+  getProductByIdentifier,
 } from "@/lib/data";
 import { ArrowLeft, MessageCircle, Ruler, Tag } from "lucide-react";
 import Link from "next/link";
@@ -63,36 +63,38 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-vintage-cream py-12 px-4 md:px-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: jsonLd({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: product.title,
-            description: product.description,
-            image: product.imageUrls.length ? product.imageUrls : undefined,
-            sku: product.id,
-            category: product.category,
-            url: `${SITE_URL}/products/${product.slug || product.id}`,
-            ...(product.price !== null
-              ? {
-                  offers: {
-                    "@type": "Offer",
-                    price: product.price,
-                    priceCurrency: "GBP",
-                    availability:
-                      product.status === "sold"
-                        ? "https://schema.org/SoldOut"
-                        : "https://schema.org/InStock",
-                    itemCondition: "https://schema.org/UsedCondition",
-                    url: `${SITE_URL}/products/${product.slug || product.id}`,
-                  },
-                }
-              : {}),
-          }),
-        }}
-      />
+      {!product.demo && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLd({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              name: product.title,
+              description: product.description,
+              image: product.imageUrls.length ? product.imageUrls : undefined,
+              sku: product.id,
+              category: product.category,
+              url: `${SITE_URL}/products/${product.slug || product.id}`,
+              ...(product.price !== null
+                ? {
+                    offers: {
+                      "@type": "Offer",
+                      price: product.price,
+                      priceCurrency: "GBP",
+                      availability:
+                        product.status === "sold"
+                          ? "https://schema.org/SoldOut"
+                          : "https://schema.org/InStock",
+                      itemCondition: "https://schema.org/UsedCondition",
+                      url: `${SITE_URL}/products/${product.slug || product.id}`,
+                    },
+                  }
+                : {}),
+            }),
+          }}
+        />
+      )}
       <div className="max-w-6xl mx-auto space-y-8">
         <Link
           href="/stock"
@@ -113,6 +115,7 @@ export default async function ProductPage({ params }: PageProps) {
             <div className="space-y-4">
               <span className="inline-block text-forest-green text-sm font-bold uppercase tracking-wider">
                 {product.category}
+                {product.demo && " · Demo"}
               </span>
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-vintage-charcoal leading-tight">
                 {product.title}
@@ -141,7 +144,13 @@ export default async function ProductPage({ params }: PageProps) {
             </div>
 
             <div className="pt-8 mt-auto">
-              {product.status === "available" ? (
+              {product.demo ? (
+                <div className="space-y-3">
+                  <p className="font-semibold">
+                    Demo listing — unavailable to purchase
+                  </p>
+                </div>
+              ) : product.status === "available" ? (
                 <div>
                   <ButtonLink
                     href={whatsappUrl}
