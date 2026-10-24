@@ -1,5 +1,12 @@
 # Releases
 
+## Yard location and site-detail refresh (24 October 2026)
+
+- Show the business name and `71 High Road Ellis Cl / London / NW10 2SU` in the footer, using the same owner-managed settings as the contact page. Update fallback details and contact metadata to match.
+- Read site details at request time, invalidate the shared layout after a successful owner save, and refresh the admin layout so edits appear without a rebuild. React request memoization still avoids duplicate settings reads during one render.
+- Embed the owner's [exact entrance pin](https://maps.app.goo.gl/RMgUuTvSoLVCM95Q7), `51.5470500, -0.2275646`, with a short note naming Willesden Reclamation and explaining that the entrance is just down Ellis Close. Google labels this dropped pin with coordinates; the owner confirmed that presentation. Keep a separate entrance link for opening Maps. This does not modify Google's business listing.
+- Existing saved address lines already contain Ellis Close. Save the exact pin through the owner settings API; preserve the phone, email, opening hours and catalogue records.
+
 ## 1.1.0 - owner-approved stock/photo release (24 October 2026)
 
 The owner approved merging the reviewed design after reviewing it with his partner. The final change keeps the 2/3/4/5-column grids, six-row paging, two desktop rows of homepage arrivals, aligned 3:4 stock frames, complete portrait/landscape viewing, compact gold-bordered cards and controls, shared photo loading/retry and immediate stock search with separately applied sorting.

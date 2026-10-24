@@ -1,5 +1,6 @@
 import "server-only";
 import { cache } from "react";
+import { connection } from "next/server";
 import {
   DEFAULT_SITE_SETTINGS,
   slugify,
@@ -172,6 +173,8 @@ export const getProductByIdentifier = cache(async (identifier: string) => {
 
 export const getSiteSettings = cache(
   async (strict = false): Promise<SiteSettings> => {
+    // Site details must reflect owner edits, including on otherwise static pages.
+    await connection();
     const supabase = getSupabasePublicClient();
     if (!supabase) {
       if (strict) throw new Error("Could not load settings.");

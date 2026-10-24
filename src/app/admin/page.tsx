@@ -6,6 +6,7 @@ import { prepareImage } from "@/lib/prepare-image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import {
   DEFAULT_SITE_SETTINGS,
@@ -61,6 +62,7 @@ function productToForm(product: Product): ProductFormState {
 }
 
 export default function AdminPage() {
+  const router = useRouter();
   const supabase = useMemo(() => createBrowserSupabaseClient(), []);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const productJumpRef = useRef<HTMLDetailsElement>(null);
@@ -428,6 +430,7 @@ export default function AdminPage() {
       );
       displaySettings(json.settings);
       setMessage("Site settings saved.");
+      router.refresh();
     });
   }
 
