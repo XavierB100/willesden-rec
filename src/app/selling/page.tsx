@@ -38,7 +38,7 @@ export default async function SellingPage() {
             <h2 className="text-2xl font-serif font-bold text-vintage-moss">
               What We Buy
             </h2>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm sm:text-base font-sans text-vintage-charcoal/80">
+            <ul className="flex flex-col gap-3 text-sm sm:text-base font-sans text-vintage-charcoal/80">
               {[
                 "Victorian Fireplaces",
                 "Cast Iron Radiators",
