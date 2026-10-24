@@ -1,6 +1,6 @@
 # Changes since the original version and review handover
 
-Prepared for owner review on **24 October 2026**. Maintainer: **itslizzyy**.
+Prepared for owner review on **24 October 2026**. Maintainer: **XavierB100 (xavier blake)**.
 
 ## Versions being compared
 
@@ -8,13 +8,15 @@ Prepared for owner review on **24 October 2026**. Maintainer: **itslizzyy**.
 | --- | --- | --- |
 | Original checked-in application | `24e5ef7bd8e5aac327628d6e0b4b8b3d3de940c8` (`Initial commit`, package version 0.1.0) | Starting point for the cumulative comparison |
 | Approved v1 | `bdce119b9a92455d57a68e8183342d969a03b107`, annotated tag `v1`, package version 1.0.0 | Merged PR #1; current `main` baseline |
-| Current review | `codex/responsive-product-photos`, [PR #2](https://github.com/itslizzyy/willesden-rec/pull/2) | Open and unmerged; review deployment only |
+| Current review | `codex/responsive-product-photos`, [restored PR #1](https://github.com/XavierB100/willesden-rec/pull/1) | Open and unmerged; original itslizzyy PR #2 recovered after account suspension |
 
 The original in this record is the first checked-in Next.js application. The separate legacy website's route inventory and domain plan are in [existing-urls.csv](existing-urls.csv) and [delivery.md](delivery.md).
 
 The original application already included public/category stock pages, latest arrivals, category and price sorting, multiple product photos with arrow controls, a full-screen viewer, WhatsApp enquiries, owner-restricted management routes, product uploads, and editable site settings. The following sections record how those features changed and what was added.
 
-Full file/line comparisons are available at [original → approved v1](https://github.com/itslizzyy/willesden-rec/compare/24e5ef7...v1), [approved v1 → this PR](https://github.com/itslizzyy/willesden-rec/compare/v1...codex/responsive-product-photos), and [original → current review](https://github.com/itslizzyy/willesden-rec/compare/24e5ef7...codex/responsive-product-photos). These comparisons include the configuration, documentation, asset, dependency and lockfile changes as well as the interface.
+Full file/line comparisons are available at [original → approved v1](https://github.com/XavierB100/willesden-rec/compare/24e5ef7...v1), [approved v1 → this PR](https://github.com/XavierB100/willesden-rec/compare/v1...codex/responsive-product-photos), and [original → current review](https://github.com/XavierB100/willesden-rec/compare/24e5ef7...codex/responsive-product-photos). These comparisons include the configuration, documentation, asset, dependency and lockfile changes as well as the interface.
+
+On 24 October 2026, GitHub hosting moved to XavierB100 after the itslizzyy account became inaccessible. References to PR #1 in the v1 history and PR #2 in the feature history below refer to the original repository. The current image review is a new PR #1 in the restored repository; [account-migration.md](account-migration.md) records the recovery and verification.
 
 ## Original → approved v1: hosting, reliability and management
 
@@ -83,9 +85,9 @@ Full file/line comparisons are available at [original → approved v1](https://g
 
 ## Review handover and production decision
 
-- Review [PR #2](https://github.com/itslizzyy/willesden-rec/pull/2), the [homepage preview](https://deploy-preview-2--adorable-sunshine-a6e527.netlify.app/), and the [stock preview](https://deploy-preview-2--adorable-sunshine-a6e527.netlify.app/stock).
+- Review [restored PR #1](https://github.com/XavierB100/willesden-rec/pull/1), the [homepage preview](https://deploy-preview-1--adorable-sunshine-a6e527.netlify.app/), and the [stock preview](https://deploy-preview-1--adorable-sunshine-a6e527.netlify.app/stock).
 - Compare phone and desktop, including two desktop Latest Arrivals rows, portrait/landscape framing, live search, Apply/Enter/Clear and a full category's pagination.
-- **Decision pending owner review on 24 October 2026.** Leave PR #2 open and unmerged. Further refinements or a production merge require that decision; no automatic merge or production/domain promotion is scheduled.
+- **Decision pending owner review on 24 October 2026.** Leave the restored review PR open and unmerged. Further refinements or a production merge require that decision; no automatic merge or production/domain promotion is scheduled.
 - The current `main` application stays at approved v1 during this review. The existing shared inventory/settings are not changed by the review fixtures. A later production build uses that existing catalogue, not the 252 preview fixtures.
 - The separate business-launch items remain in [delivery.md](delivery.md): verify business content/stock, preserve or redirect legacy URLs, agree backups, approve any domain/DNS/Auth URL/indexing change, and verify the deployed owner/enquiry flows. Those actions are outside the current review handover.
 

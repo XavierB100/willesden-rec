@@ -1,10 +1,10 @@
 # Hosting and maintenance
 
-Owner and maintainer: **itslizzyy**. Last updated: **23 October 2026**.
+GitHub maintainer: **XavierB100 (xavier blake)**. Hosting remains in the existing **itslizzyy** Netlify team. Last updated: **24 October 2026**.
 
 ## Services
 
-- GitHub: https://github.com/itslizzyy/willesden-rec — `main` is the deployment branch.
+- GitHub: https://github.com/XavierB100/willesden-rec — `main` is the deployment branch and remains approved v1. The old itslizzyy repository is inaccessible; see [account migration](account-migration.md).
 - Netlify team: `itslizzyy`.
 - Netlify project: `adorable-sunshine-a6e527` (`fd0cbb78-dfd3-49f2-a2fa-58963f547dc7`).
 - Staging site: https://adorable-sunshine-a6e527.netlify.app — publicly shareable for review; search indexing remains disabled.

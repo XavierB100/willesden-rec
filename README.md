@@ -2,7 +2,7 @@
 
 Version **1.0.0 (v1)** — the approved deliverable baseline. The `v1` Git tag identifies the merged baseline before future design changes.
 
-Maintained by **itslizzyy**. Next.js and React website with Supabase inventory, owner-only management, photo uploads, and WhatsApp enquiries. Hosted on Netlify.
+Maintained by **XavierB100 (xavier blake)**. Next.js and React website with Supabase inventory, owner-only management, photo uploads, and WhatsApp enquiries. Hosted on Netlify.
 
 The deliverable base is prepared for **https://www.willesdenreclamation.co.uk**. The Netlify review site and PR previews are publicly shareable, with search indexing disabled. The catalogue still contains example/test stock. See [delivery and domain handover](notes/delivery.md), [hosting](notes/hosting.md), and the [existing URL inventory](notes/existing-urls.csv).
 
@@ -36,7 +36,7 @@ SEO canonicals, social metadata, structured data, and sitemap URLs use the final
 
 ## Catalogue review
 
-The [complete change history and PR review handover](notes/change-history.md) compares the original app, approved v1 and PR #2, and records the pending production decision.
+The [complete change history and PR review handover](notes/change-history.md) compares the original app, approved v1 and the image review (original PR #2, restored as [PR #1](https://github.com/XavierB100/willesden-rec/pull/1)), and records the pending production decision. See [account migration](notes/account-migration.md) for repository recovery and hosting continuity.
 
 PR deploy previews can show a labelled sample catalogue with 36 fictional listings in every category, predominantly portrait photos, some landscape photos, and multi-photo examples. Samples are isolated from the live inventory and have no enquiry action. See [sample catalogue and photo credits](notes/review-stock.md) for the preview switch and sources.
 

@@ -96,4 +96,4 @@ The previous website owner login was restored at the owner's request, retaining 
 
 ## PR #2 review handover
 
-The complete original-to-current comparison, current photo/search/layout behaviour, validation scope and pending owner review are recorded in [change-history.md](change-history.md). PR #2 remains open and unmerged for the planned 24 October 2026 review. Public Netlify sharing does not approve a merge or custom-domain launch.
+The complete original-to-current comparison, current photo/search/layout behaviour, validation scope and pending owner review are recorded in [change-history.md](change-history.md). The image review was restored as [XavierB100 PR #1](https://github.com/XavierB100/willesden-rec/pull/1) on 24 October 2026 and remains unmerged for owner review. See [account migration](account-migration.md); earlier PR numbers in this historical delivery record refer to the original itslizzyy repository. Public Netlify sharing does not approve a merge or custom-domain launch.
