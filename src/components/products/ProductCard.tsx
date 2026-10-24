@@ -87,7 +87,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
       <div className="flex flex-col flex-grow p-2.5 md:p-3 gap-1">
         <div className="text-[10px] md:text-xs font-sans text-forest-green uppercase tracking-wide">
           {product.category}
-          {product.sample && " · Sample"}
+          {product.demo && " · Demo"}
         </div>
         <h3 className="font-serif text-base md:text-lg leading-snug text-vintage-charcoal line-clamp-2 min-h-[2.75rem] md:min-h-[3.125rem]">
           {product.title}

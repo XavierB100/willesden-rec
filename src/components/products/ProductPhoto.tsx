@@ -61,7 +61,9 @@ export function ProductPhoto({
       photo.sizes = props.sizes || sizes;
       photo.srcset = props.srcSet || "";
       photo.src = props.src;
-      void photo.decode().catch(() => { /* The visible image offers retry. */ });
+      void photo.decode().catch(() => {
+        /* The visible image offers retry. */
+      });
       return photo;
     });
     return () => {
@@ -73,16 +75,26 @@ export function ProductPhoto({
   }, [activeIndex, images, loading, sizes, visible]);
 
   return (
-    <div ref={frame} className="absolute inset-0" aria-busy={loading && failedImage !== activeImage}>
+    <div
+      ref={frame}
+      className="absolute inset-0"
+      aria-busy={loading && failedImage !== activeImage}
+    >
       {Array.from(new Set([displayedImage, activeImage])).map((src) => (
         <Image
           key={`${src}-${attempt}`}
           src={src}
-          alt={src === displayedImage ? `Photo ${images.indexOf(src) + 1} of ${title}` : ""}
+          alt={
+            src === displayedImage
+              ? `Photo ${images.indexOf(src) + 1} of ${title}`
+              : ""
+          }
           aria-hidden={src !== displayedImage}
           fill
           sizes={sizes}
-          loading={eager || src !== displayedImage || attempt > 0 ? "eager" : "lazy"}
+          loading={
+            eager || src !== displayedImage || attempt > 0 ? "eager" : "lazy"
+          }
           fetchPriority={eager && activeIndex === 0 ? "high" : "auto"}
           className={`object-contain ${src === displayedImage && failedImage !== src ? "opacity-100" : "opacity-0"}`}
           onLoad={() => {
@@ -109,7 +121,10 @@ export function ProductPhoto({
           </button>
         </div>
       ) : loading ? (
-        <span role="status" className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/95 px-2 py-1 text-[11px] text-vintage-charcoal shadow-sm">
+        <span
+          role="status"
+          className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/95 px-2 py-1 text-[11px] text-vintage-charcoal shadow-sm"
+        >
           Loading photo…
         </span>
       ) : null}

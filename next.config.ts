@@ -1,14 +1,10 @@
 import type { NextConfig } from "next";
-import { reviewStockEnabled } from "./src/lib/review-mode";
 
 const storageHost = process.env.NEXT_PUBLIC_SUPABASE_URL
   ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname
   : undefined;
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  env: {
-    REVIEW_CATALOGUE_ENABLED: String(reviewStockEnabled(process.env.CONTEXT, process.env.REVIEW_SAMPLE_STOCK)),
-  },
   images: {
     remotePatterns: storageHost
       ? [

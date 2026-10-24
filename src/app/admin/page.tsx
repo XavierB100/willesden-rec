@@ -22,6 +22,7 @@ import { Edit, LogOut, Plus, Save, Trash2, Upload } from "lucide-react";
 
 interface ProductFormState {
   id?: string;
+  demo: boolean;
   title: string;
   slug: string;
   price: string;
@@ -33,6 +34,7 @@ interface ProductFormState {
 }
 
 const emptyProductForm: ProductFormState = {
+  demo: false,
   title: "",
   slug: "",
   price: "",
@@ -46,6 +48,7 @@ const emptyProductForm: ProductFormState = {
 function productToForm(product: Product): ProductFormState {
   return {
     id: product.id,
+    demo: product.demo ?? false,
     title: product.title,
     slug: product.slug,
     price: product.price === null ? "" : String(product.price),
@@ -99,7 +102,7 @@ export default function AdminPage() {
     (product) =>
       (!selectedCategories.length ||
         selectedCategories.includes(product.category)) &&
-      `${product.title} ${product.category} ${product.status}`
+      `${product.title} ${product.category} ${product.status} ${product.demo ? "demo" : ""}`
         .toLowerCase()
         .includes(search.toLowerCase()),
   );
@@ -675,6 +678,23 @@ export default function AdminPage() {
                   </label>
                 </div>
 
+                <label className="flex items-start gap-3 rounded-sm border border-vintage-charcoal/15 p-3">
+                  <input
+                    type="checkbox"
+                    checked={productForm.demo}
+                    onChange={(event) =>
+                      updateProductForm({ demo: event.target.checked })
+                    }
+                    className="mt-1 h-4 w-4 shrink-0"
+                  />
+                  <span className="text-sm">
+                    <span className="block font-bold">Demo listing</span>
+                    <span>
+                      Label this as a demo and disable buying enquiries.
+                    </span>
+                  </span>
+                </label>
+
                 <label className="block space-y-2">
                   <span className="text-sm font-bold text-vintage-charcoal">
                     Dimensions
@@ -944,6 +964,7 @@ export default function AdminPage() {
                       </h3>
                       <p className="text-sm text-vintage-charcoal/80">
                         {product.category} · {product.status}
+                        {product.demo && " · Demo"}
                       </p>
                     </div>
                   </div>

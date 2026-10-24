@@ -1,4 +1,4 @@
-import { getStorefrontProducts } from "@/lib/storefront-data";
+import { getProducts } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ProductCard } from "@/components/products/ProductCard";
@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata(
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const latestProducts = await getStorefrontProducts({ includeSold: false, limit: 10 });
+  const latestProducts = await getProducts({ includeSold: false, limit: 10 });
 
   return (
     <div className="flex flex-col min-h-screen">

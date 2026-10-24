@@ -22,6 +22,9 @@ export function parseProductInput(value: unknown): ProductInput {
   if (!value || typeof value !== "object" || Array.isArray(value))
     throw new Error("Invalid product data.");
   const body = value as Record<string, unknown>;
+  const demo = body.demo ?? false;
+  if (typeof demo !== "boolean")
+    throw new Error("Demo listing must be on or off.");
   const title = text(body.title, "Title", 200, true);
   const slug = slugify(text(body.slug, "Slug", 200) || title);
   if (
@@ -65,6 +68,7 @@ export function parseProductInput(value: unknown): ProductInput {
       throw new Error("Use photos uploaded to this project.");
   }
   return {
+    demo,
     title,
     slug,
     category,

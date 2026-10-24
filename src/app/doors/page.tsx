@@ -1,4 +1,4 @@
-import { getStorefrontProducts } from "@/lib/storefront-data";
+import { getProducts } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ProductListing } from "@/components/products/ProductListing";
@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata(
 export const dynamic = "force-dynamic";
 
 export default async function DoorsPage() {
-  const filteredProducts = await getStorefrontProducts({
+  const filteredProducts = await getProducts({
     category: "Doors",
     includeSold: true,
   });

@@ -1,6 +1,6 @@
 # Deliverable base and domain handover
 
-Owner and maintainer: **itslizzyy**. Prepared 23 October 2026.
+GitHub maintainer: **XavierB100**. Historical delivery record prepared 23 October 2026; current release notes are in [releases.md](releases.md).
 
 ## Delivery scope
 
@@ -96,4 +96,9 @@ The previous website owner login was restored at the owner's request, retaining 
 
 ## PR #2 review handover
 
-The complete original-to-current comparison, current photo/search/layout behaviour, validation scope and pending owner review are recorded in [change-history.md](change-history.md). The image review was restored as [XavierB100 PR #1](https://github.com/XavierB100/willesden-rec/pull/1) on 24 October 2026 and remains unmerged for owner review. See [account migration](account-migration.md); earlier PR numbers in this historical delivery record refer to the original itslizzyy repository. Public Netlify sharing does not approve a merge or custom-domain launch.
+The complete original-to-current comparison, current photo/search/layout behaviour, validation scope and pending owner review are recorded in [change-history.md](change-history.md). The image review was restored as [XavierB100 PR #1](https://github.com/XavierB100/willesden-rec/pull/1) on 24 October 2026 and was subsequently approved for the 1.1.0 release. See [account migration](account-migration.md); earlier PR numbers in this historical delivery record refer to the original itslizzyy repository. Public Netlify sharing does not approve a merge or custom-domain launch.
+
+
+## Approved 1.1.0 release
+
+The owner approved the stock/photo design on 24 October 2026. See [release notes](releases.md) for the cohesive code cleanup and [demo stock](demo-stock.md) for the 14 admin-editable demonstrations and removal before domain launch. This supersedes the earlier unmerged-review state, while preserving v1 and the historical checks.

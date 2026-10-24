@@ -1,4 +1,4 @@
-import { getStorefrontProducts } from "@/lib/storefront-data";
+import { getProducts } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo";
 import { isProductCategory, isStockSort } from "@/lib/stock-browsing";
 import type { Metadata } from "next";
@@ -11,7 +11,11 @@ export const metadata: Metadata = pageMetadata(
 );
 
 interface StockPageProps {
-  searchParams?: Promise<{ category?: string | string[]; sort?: string | string[]; q?: string | string[] }>;
+  searchParams?: Promise<{
+    category?: string | string[];
+    sort?: string | string[];
+    q?: string | string[];
+  }>;
 }
 
 export default async function StockPage({ searchParams }: StockPageProps) {
@@ -20,8 +24,9 @@ export default async function StockPage({ searchParams }: StockPageProps) {
     ? params?.category
     : undefined;
   const selectedSort = isStockSort(params?.sort) ? params.sort : "latest";
-  const selectedQuery = typeof params?.q === "string" ? params.q.trim().slice(0, 200) : "";
-  const filteredProducts = await getStorefrontProducts({
+  const selectedQuery =
+    typeof params?.q === "string" ? params.q.trim().slice(0, 200) : "";
+  const filteredProducts = await getProducts({
     category: selectedCategory,
     includeSold: true,
   });

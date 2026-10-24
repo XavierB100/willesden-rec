@@ -1,5 +1,7 @@
 # GitHub account migration — 24 October 2026
 
+This is the migration handover before design approval. The owner subsequently approved [release 1.1.0](releases.md); its final demo catalogue differs from the earlier preview described below.
+
 ## Repository recovery
 
 The owner requested migration from the inaccessible/suspended itslizzyy GitHub account to **XavierB100 (xavier blake)**. The source repository returned 404 with the working XavierB100 account, and the saved itslizzyy CLI authentication was invalid. A GitHub repository transfer was unavailable, so recovery used the complete local Git history.

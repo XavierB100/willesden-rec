@@ -2,13 +2,15 @@
 
 Prepared for owner review on **24 October 2026**. Maintainer: **XavierB100 (xavier blake)**.
 
+**Current status:** the owner approved the 1.1.0 release on 24 October 2026. The review history below is retained as a dated record; [release notes](releases.md) and [current demo stock](demo-stock.md) describe the final 14 managed demos and cleanup.
+
 ## Versions being compared
 
 | Version | Exact reference | State at this handover |
 | --- | --- | --- |
 | Original checked-in application | `24e5ef7bd8e5aac327628d6e0b4b8b3d3de940c8` (`Initial commit`, package version 0.1.0) | Starting point for the cumulative comparison |
 | Approved v1 | `bdce119b9a92455d57a68e8183342d969a03b107`, annotated tag `v1`, package version 1.0.0 | Merged PR #1; current `main` baseline |
-| Current review | `codex/responsive-product-photos`, [restored PR #1](https://github.com/XavierB100/willesden-rec/pull/1) | Open and unmerged; original itslizzyy PR #2 recovered after account suspension |
+| Historical review | `codex/responsive-product-photos`, [restored PR #1](https://github.com/XavierB100/willesden-rec/pull/1) | Owner-approved for the 1.1.0 release; original itslizzyy PR #2 recovered after account suspension |
 
 The original in this record is the first checked-in Next.js application. The separate legacy website's route inventory and domain plan are in [existing-urls.csv](existing-urls.csv) and [delivery.md](delivery.md).
 
@@ -66,7 +68,7 @@ On 24 October 2026, GitHub hosting moved to XavierB100 after the itslizzyy accou
 - Search text and the applied order stay in a shareable/reloadable URL. Category changes retain them. Clear search removes only the query and keeps category/applied sort. Browser history restoration synchronizes the controls.
 - Search, Sort by and Apply share one row on phones and desktop. Sort is **84 px on phones / 128 px on wider screens**; the search field gets the remaining space. Options use compact Newest / Price ↑ / Price ↓ labels.
 
-### Review stock and publishing state
+### Historical preview stock and publishing state (retired in 1.1.0)
 
 - Added **252 fictional listings, 36 per category**, for testing full pages. **28 source photographs** have portrait 1200×1600 and landscape 1600×1200 WebP variants: 56 assets in total. Most covers are portrait; some are landscape. Some galleries show both crops of the same source image. Listings/photos are intentionally reused; each category includes a missing-photo example, and the set includes sold and POA states.
 - Samples are checked-in preview data behind a build-time gate requiring both `CONTEXT=deploy-preview` and `REVIEW_SAMPLE_STOCK=true`. They do not enter Supabase or owner management. Production builds continue using the existing catalogue.
@@ -83,11 +85,11 @@ On 24 October 2026, GitHub hosting moved to XavierB100 after the itslizzyy accou
 - These are T3 Chromium checks with responsive CSS viewports. Physical iPhone/Safari acceptance remains for owner review. New PR #2 visual changes have not been represented as a fresh full accessibility audit or a field performance certification. Historical v1 audit results retain their original scope in [delivery.md](delivery.md).
 - Pagination slices the already-fetched catalogue; it does not add database paging. Sample prices/descriptions/photos are for layout review and do not confirm business inventory.
 
-## Review handover and production decision
+## Historical review handover and production decision
 
 - Review [restored PR #1](https://github.com/XavierB100/willesden-rec/pull/1), the [homepage preview](https://deploy-preview-1--adorable-sunshine-a6e527.netlify.app/), and the [stock preview](https://deploy-preview-1--adorable-sunshine-a6e527.netlify.app/stock).
 - Compare phone and desktop, including two desktop Latest Arrivals rows, portrait/landscape framing, live search, Apply/Enter/Clear and a full category's pagination.
-- **Decision pending owner review on 24 October 2026.** Leave the restored review PR open and unmerged. Further refinements or a production merge require that decision; no automatic merge or production/domain promotion is scheduled.
+- **Original handover:** the decision was pending the 24 October review. That merge decision is now approved; see [release notes](releases.md). The custom-domain/business launch remains pending.
 - The current `main` application stays at approved v1 during this review. The existing shared inventory/settings are not changed by the review fixtures. A later production build uses that existing catalogue, not the 252 preview fixtures.
 - The separate business-launch items remain in [delivery.md](delivery.md): verify business content/stock, preserve or redirect legacy URLs, agree backups, approve any domain/DNS/Auth URL/indexing change, and verify the deployed owner/enquiry flows. Those actions are outside the current review handover.
 

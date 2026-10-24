@@ -4,7 +4,7 @@ GitHub maintainer: **XavierB100 (xavier blake)**. Hosting remains in the existin
 
 ## Services
 
-- GitHub: https://github.com/XavierB100/willesden-rec — `main` is the deployment branch and remains approved v1. The old itslizzyy repository is inaccessible; see [account migration](account-migration.md).
+- GitHub: https://github.com/XavierB100/willesden-rec — `main` is the deployment branch. The `v1` tag preserves the approved baseline; see [current release notes](releases.md). The old itslizzyy repository is inaccessible; see [account migration](account-migration.md).
 - Netlify team: `itslizzyy`.
 - Netlify project: `adorable-sunshine-a6e527` (`fd0cbb78-dfd3-49f2-a2fa-58963f547dc7`).
 - Staging site: https://adorable-sunshine-a6e527.netlify.app — publicly shareable for review; search indexing remains disabled.
@@ -65,3 +65,8 @@ At the owner’s request on 23 October 2026, Netlify project visibility was cust
 - Reset an admin password through Supabase Auth or the server-side Admin API; custom SMTP must be configured and tested before relying on password-reset email.
 
 References: [Netlify Next.js](https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview/), [Supabase backups](https://supabase.com/docs/guides/platform/backups), [Supabase pricing](https://supabase.com/pricing).
+
+
+## Managed demo release
+
+Release 1.1.0 replaces the preview-only catalogue with ordinary admin-editable demo rows in this same project. Apply the managed-demo migration before code deployment and import the approved 14 records afterwards. See [demo-stock.md](demo-stock.md). Production/preview now use the same stock reader; there is no sample fixture flag.
