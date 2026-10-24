@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = pageMetadata(
   "Contact & Visit | Willesden Reclamation",
-  "Visit Willesden Reclamation at 71 High Road, London NW10 2SU, call 07907 020 909, or enquire by WhatsApp.",
+  "Visit Willesden Reclamation at 71 High Road Ellis Cl, London NW10 2SU, call 07907 020 909, or enquire by WhatsApp.",
   "/contact",
 );
 
@@ -105,18 +105,37 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <div className="h-[420px] bg-vintage-charcoal/5 rounded-md overflow-hidden relative border border-vintage-charcoal/10">
-          <iframe
-            title="Map to Willesden Reclamation"
-            src={settings.mapEmbedUrl}
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0"
-          />
+        <div className="space-y-4">
+          <div className="h-[420px] bg-vintage-charcoal/5 rounded-md overflow-hidden relative border border-vintage-charcoal/10">
+            <iframe
+              title="Map to Willesden Reclamation"
+              src={settings.mapEmbedUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0"
+              aria-describedby="yard-entrance-note"
+            />
+          </div>
+          <p
+            id="yard-entrance-note"
+            className="text-sm font-sans text-vintage-charcoal/80 leading-relaxed"
+          >
+            Google Maps shows {settings.businessName} on High Road. Our yard
+            entrance is just down Ellis Close.
+          </p>
+          <a
+            href="https://maps.app.goo.gl/RMgUuTvSoLVCM95Q7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-forest-green underline underline-offset-4 hover:text-vintage-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-vintage-gold"
+          >
+            <MapPin className="h-4 w-4 shrink-0" aria-hidden="true" />
+            Find the yard entrance
+          </a>
         </div>
       </div>
     </div>

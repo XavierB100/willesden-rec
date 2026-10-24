@@ -51,6 +51,7 @@ export async function Footer() {
               Visit Us
             </h4>
             <div className="text-sm font-sans space-y-2 text-vintage-cream/80">
+              <p className="font-semibold">{settings.businessName}</p>
               {settings.addressLines.map((line) => (
                 <p key={line}>{line}</p>
               ))}

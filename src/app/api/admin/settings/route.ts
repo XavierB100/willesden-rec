@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import {
   DEFAULT_SITE_SETTINGS,
   getSiteSettings,
@@ -171,5 +172,6 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  revalidatePath("/", "layout");
   return NextResponse.json({ settings });
 }
